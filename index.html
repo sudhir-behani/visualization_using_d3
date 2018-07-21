@@ -97,7 +97,7 @@ body {
 	function load_data() {
 		<!--Data Matches -->
 		console.log('Loading matches data..')	
-		d3.tsv("src/matche_play_won.tsv", type_matches, function(error, data) {
+		d3.tsv("/src/matche_play_won.tsv", type_matches, function(error, data) {
 			data_matches = data;
 			console.log(data_matches);
 		});
@@ -108,7 +108,7 @@ body {
 		
 		<!--Data Win By -->
 		console.log('Loading wins_by data..')		
-		d3.tsv("src/win_by.tsv", type_winby, function(error, data) {
+		d3.tsv("/src/win_by.tsv", type_winby, function(error, data) {
 			data_win_by = data;
 			console.log(data_win_by);
 		});
@@ -118,7 +118,7 @@ body {
 		}
 		<!--Data Runs Per Over -->
 		console.log('Loading run per over data..')		 	
-		d3.tsv("src/runs_per_over.tsv", type_runs, function(error, data) {
+		d3.tsv("/src/runs_per_over.tsv", type_runs, function(error, data) {
 			data_runs_per_over = data;
 			console.log(data_runs_per_over);
 		});
