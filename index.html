@@ -29,6 +29,10 @@ body {
   display: none;
 
 }
+.title {
+  font: 30 30px Helvetica Neue;
+  fill: #666;
+}
 
 #tooltip {
     opacity: 0;
@@ -111,7 +115,7 @@ body {
 	
 	// runs per over
 	var color_rps = "#994499";				
-	var color_rpn = "#ffcc00";	
+	var color_rpn = "#ffcc00";
 
 	
     <!--Function to Load the data -->
@@ -168,8 +172,9 @@ body {
 	<!--Visualization Description -->	
 	
 	<!--Scene1 -->
-	function matches_played_won(){ 		
+	function matches_played_won(){	
 		d3.select("svg").remove();
+				
 		var margin = {top: 80, right: 80, bottom: 80, left: 80},
 			width = 960 - margin.left - margin.right,
 			height = 500 - margin.top - margin.bottom;
@@ -191,7 +196,7 @@ body {
 			.attr("height", height + margin.top + margin.bottom)
 		  .append("g")
 			.attr("class", "graph")
-			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+			.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 		
 			x.domain(data_matches.map(function(d) { return d.team; }));
 			y0.domain([0, d3.max(data_matches, function(d) { return d.played; })]);
@@ -230,7 +235,7 @@ body {
 
 			bars.append("rect")
 			  .attr("class", "bar2")
-			  .attr("x", function(d) { return x(d.team) + x.rangeBand()/2; })
+			  .attr("x", function(d) { return x(d.team); })
 			  .attr("width", x.rangeBand() / 2)
 			  .attr("y", function(d) { return y0(d.won); })
 			  .attr("height", function(d,i,j) { return height - y0(d.won); })			  
@@ -244,7 +249,7 @@ body {
 				.on("mouseout", function() { tooltip.style("opacity", 0) });
 				
 		console.log(bars);		
-		
+						
 		<!--Create the legend -->
 		var colors = d3.scale.ordinal()
 			.range([color_mp, color_mw]);		
@@ -444,7 +449,7 @@ body {
 
 		bars.append("rect")
 		  .attr("class", "bar2")
-		  .attr("x", function(d) { return x(d.team) + x.rangeBand()/2; })
+		  .attr("x", function(d) { return x(d.team); })
 		  .attr("width", x.rangeBand() / 2)
 		  .attr("y", function(d) { return y0(d.runs_normal_over); })
 		  .attr("height", function(d,i,j) { return height - y0(d.runs_normal_over); })
