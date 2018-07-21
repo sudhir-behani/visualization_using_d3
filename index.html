@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>INDIAN PREMIER LEAGUE (IPL) Tournament</title>
+	<title>IPL Tournament</title>
 	<meta name="description" content="An IPL Tournament visualization">
 	<meta name="author" content="Sudhir Behani">
 	<meta name="apple-mobile-web-app-capable" content="yes">
@@ -89,8 +89,48 @@ body {
 </div>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
-    <!--Load the data -->	 
+	var data_matches = 0;
+	var data_win_by = 0;
+	var data_runs_per_over = 0;
 	
+    <!--Function to Load the data -->
+	function load_data() {
+		<!--Data Matches -->
+		console.log('Loading matches data..')	
+		d3.tsv("src/matche_play_won.tsv", type_matches, function(error, data) {
+			data_matches = data;
+			console.log(data_matches);
+		});
+		function type_matches(d) {
+		  d.played = +d.played;
+		  return d;
+		}
+		
+		<!--Data Win By -->
+		console.log('Loading wins_by data..')		
+		d3.tsv("src/win_by.tsv", type_winby, function(error, data) {
+			data_win_by = data;
+			console.log(data_win_by);
+		});
+		function type_winby(d) {
+		  d.win_by_runs = +d.win_by_runs;
+		  return d;
+		}
+		<!--Data Runs Per Over -->
+		console.log('Loading run per over data..')		 	
+		d3.tsv("src/runs_per_over.tsv", type_runs, function(error, data) {
+			data_runs_per_over = data;
+			console.log(data_runs_per_over);
+		});
+		function type_runs(d) {
+		  d.runs_super_over = +d.runs_super_over;
+		  return d;
+		}		  		
+	}
+	
+    <!--Load the data -->	
+	load_data();
+
 	<!--About Button -->	
 	function about_vis(){
 		console.log("Pressed the button about_viz");
@@ -104,8 +144,8 @@ body {
 		}
 	}
 	
-	<!--Visualization Description -->
-		
+	<!--Visualization Description -->	
+	
 	<!--Scene1 -->
 	function matches_played_won(){ 		
 		d3.select("svg").remove();
@@ -132,11 +172,9 @@ body {
 			.attr("class", "graph")
 			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 		
-		d3.tsv("src/matche_play_won.tsv", type, function(error, data) {
-			console.log(data[0]);
-			x.domain(data.map(function(d) { return d.team; }));
-			y0.domain([0, d3.max(data, function(d) { return d.played; })]);
-	 
+			x.domain(data_matches.map(function(d) { return d.team; }));
+			y0.domain([0, d3.max(data_matches, function(d) { return d.played; })]);
+			
 			svg.append("g")
 			  .attr("class", "x axis")
 			  .attr("transform", "translate(0," + height + ")")
@@ -153,7 +191,7 @@ body {
 				.style("text-anchor", "end")
 				.text("Matches");
 		
-			bars = svg.selectAll(".bar").data(data).enter();	
+			bars = svg.selectAll(".bar").data(data_matches).enter();	
 			bars.append("rect")
 			  .attr("class", "bar1")
 			  .attr("x", function(d) { return x(d.team); })
@@ -181,20 +219,13 @@ body {
 						   .html("Team Name:" + d.team + "\n" +"Matches Won:"+d.won);
 				})
 				.on("mouseout", function() { tooltip.style("opacity", 0) });
-				
-		});
-		
+						
 		<!--Create the legend -->
 		var legend = svg.selectAll(".legend")
 		.data(["Played", "Won"])
 		.enter().append("g")
 		.attr("class", "legend")
-		.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
-		
-		function type(d) {
-		  d.played = +d.played;
-		  return d;
-		}	
+		.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });		
 	}
 	
 	<!--Scene2 -->
@@ -224,58 +255,54 @@ body {
 			.attr("class", "graph")
 			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 		
-		d3.tsv("src/win_by.tsv", type, function(error, data) {
-			console.log(data);
-			x.domain(data.map(function(d) { return d.team; }));
-			y0.domain([0, d3.max(data, function(d) { return d.win_by_runs; })]);
-	 
-			svg.append("g")
-			  .attr("class", "x axis")
-			  .attr("transform", "translate(0," + height + ")")
-			  .call(xAxis);
-			  
-			svg.append("g")
-			  .attr("class", "y axis axisLeft")
-			  .attr("transform", "translate(0,0)")
-			  .call(yAxisLeft)
-			  .append("text")
-				.attr("y", 6)
-				.attr("dy", "-2em")
-				.style("text-anchor", "end")
-				.style("text-anchor", "end")
-				.text("Win By");
-		
-			bars = svg.selectAll(".bar").data(data).enter();	
-			bars.append("rect")
-			  .attr("class", "bar1")
-			  .attr("x", function(d) { return x(d.team); })
-			  .attr("width", x.rangeBand()/2)
-			  .attr("y", function(d) { return y0(d.win_by_runs); })
-			  .attr("height", function(d,i,j) { return height - y0(d.win_by_runs); }) 
-			  .on("mouseover", function(d,i) {
-					tooltip.style("opacity", 1)
-						   .style("left",(d3.event.pageX)+"px")
-						   .style("top",(d3.event.pageY)+"px")
-						   .html("Team Name:" + d.team + "\n" +"Win_by_runs:"+d.win_by_runs);
-				})
-			   .on("mouseout", function() { tooltip.style("opacity", 0) });
+		x.domain(data_win_by.map(function(d) { return d.team; }));
+		y0.domain([0, d3.max(data_win_by, function(d) { return d.win_by_runs; })]);
+ 
+		svg.append("g")
+		  .attr("class", "x axis")
+		  .attr("transform", "translate(0," + height + ")")
+		  .call(xAxis);
+		  
+		svg.append("g")
+		  .attr("class", "y axis axisLeft")
+		  .attr("transform", "translate(0,0)")
+		  .call(yAxisLeft)
+		  .append("text")
+			.attr("y", 6)
+			.attr("dy", "-2em")
+			.style("text-anchor", "end")
+			.style("text-anchor", "end")
+			.text("Win By");
+	
+		bars = svg.selectAll(".bar").data(data_win_by).enter();	
+		bars.append("rect")
+		  .attr("class", "bar1")
+		  .attr("x", function(d) { return x(d.team); })
+		  .attr("width", x.rangeBand()/2)
+		  .attr("y", function(d) { return y0(d.win_by_runs); })
+		  .attr("height", function(d,i,j) { return height - y0(d.win_by_runs); }) 
+		  .on("mouseover", function(d,i) {
+				tooltip.style("opacity", 1)
+					   .style("left",(d3.event.pageX)+"px")
+					   .style("top",(d3.event.pageY)+"px")
+					   .html("Team Name:" + d.team + "\n" +"Win_by_runs:"+d.win_by_runs);
+			})
+		   .on("mouseout", function() { tooltip.style("opacity", 0) });
 
-			bars.append("rect")
-			  .attr("class", "bar2")
-			  .attr("x", function(d) { return x(d.team) + x.rangeBand()/2; })
-			  .attr("width", x.rangeBand() / 2)
-			  .attr("y", function(d) { return y0(d.win_by_wickets); })
-			  .attr("height", function(d,i,j) { return height - y0(d.win_by_wickets); })
-			  .on("mouseover", function(d,i) {
-					tooltip.style("opacity", 1)
-						   .style("left",(d3.event.pageX)+"px")
-						   .style("top",(d3.event.pageY)+"px")
-						   .html("Team Name:" + d.team + "\n" +"Win_by_wickets:"+d.win_by_wickets);
-				})
-				.on("mouseout", function() { tooltip.style("opacity", 0) });
+		bars.append("rect")
+		  .attr("class", "bar2")
+		  .attr("x", function(d) { return x(d.team) + x.rangeBand()/2; })
+		  .attr("width", x.rangeBand() / 2)
+		  .attr("y", function(d) { return y0(d.win_by_wickets); })
+		  .attr("height", function(d,i,j) { return height - y0(d.win_by_wickets); })
+		  .on("mouseover", function(d,i) {
+				tooltip.style("opacity", 1)
+					   .style("left",(d3.event.pageX)+"px")
+					   .style("top",(d3.event.pageY)+"px")
+					   .html("Team Name:" + d.team + "\n" +"Win_by_wickets:"+d.win_by_wickets);
+			})
+			.on("mouseout", function() { tooltip.style("opacity", 0) });
 				
-		});
-		
 		<!--Create the legend -->
 		var legend = svg.selectAll(".legend")
 		.data(["win_by_runs", "win_by_wickets"])
@@ -316,58 +343,54 @@ body {
 			.attr("class", "graph")
 			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 		
-		d3.tsv("src/runs_per_over.tsv", type, function(error, data) {
-			console.log(data[0]);
-			x.domain(data.map(function(d) { return d.team; }));
-			y0.domain([0, d3.max(data, function(d) { return d.runs_super_over; })]);
-	 
-			svg.append("g")
-			  .attr("class", "x axis")
-			  .attr("transform", "translate(0," + height + ")")
-			  .call(xAxis);
-			  
-			svg.append("g")
-			  .attr("class", "y axis axisLeft")
-			  .attr("transform", "translate(0,0)")
-			  .call(yAxisLeft)
-			  .append("text")
-				.attr("y", 6)
-				.attr("dy", "-2em")
-				.style("text-anchor", "end")
-				.style("text-anchor", "end")
-				.text("Runs Per Over");
-		
-			bars = svg.selectAll(".bar").data(data).enter();	
-			bars.append("rect")
-			  .attr("class", "bar1")
-			  .attr("x", function(d) { return x(d.team); })
-			  .attr("width", x.rangeBand()/2)
-			  .attr("y", function(d) { return y0(d.runs_super_over); })
-			  .attr("height", function(d,i,j) { return height - y0(d.runs_super_over); }) 
-			  .on("mouseover", function(d,i) {
-					tooltip.style("opacity", 1)
-						   .style("left",(d3.event.pageX)+"px")
-						   .style("top",(d3.event.pageY)+"px")
-						   .html("Team Name:" + d.team + "\n" +"Runs Per Super Over:"+d.runs_super_over);
-				})
-			   .on("mouseout", function() { tooltip.style("opacity", 0) });
+		x.domain(data_runs_per_over.map(function(d) { return d.team; }));
+		y0.domain([0, d3.max(data_runs_per_over, function(d) { return d.runs_super_over; })]);
+ 
+		svg.append("g")
+		  .attr("class", "x axis")
+		  .attr("transform", "translate(0," + height + ")")
+		  .call(xAxis);
+		  
+		svg.append("g")
+		  .attr("class", "y axis axisLeft")
+		  .attr("transform", "translate(0,0)")
+		  .call(yAxisLeft)
+		  .append("text")
+			.attr("y", 6)
+			.attr("dy", "-2em")
+			.style("text-anchor", "end")
+			.style("text-anchor", "end")
+			.text("Runs Per Over");
+	
+		bars = svg.selectAll(".bar").data(data_runs_per_over).enter();	
+		bars.append("rect")
+		  .attr("class", "bar1")
+		  .attr("x", function(d) { return x(d.team); })
+		  .attr("width", x.rangeBand()/2)
+		  .attr("y", function(d) { return y0(d.runs_super_over); })
+		  .attr("height", function(d,i,j) { return height - y0(d.runs_super_over); }) 
+		  .on("mouseover", function(d,i) {
+				tooltip.style("opacity", 1)
+					   .style("left",(d3.event.pageX)+"px")
+					   .style("top",(d3.event.pageY)+"px")
+					   .html("Team Name:" + d.team + "\n" +"Runs Per Super Over:"+d.runs_super_over);
+			})
+		   .on("mouseout", function() { tooltip.style("opacity", 0) });
 
-			bars.append("rect")
-			  .attr("class", "bar2")
-			  .attr("x", function(d) { return x(d.team) + x.rangeBand()/2; })
-			  .attr("width", x.rangeBand() / 2)
-			  .attr("y", function(d) { return y0(d.runs_normal_over); })
-			  .attr("height", function(d,i,j) { return height - y0(d.runs_normal_over); })
-			  .on("mouseover", function(d,i) {
-					tooltip.style("opacity", 1)
-						   .style("left",(d3.event.pageX)+"px")
-						   .style("top",(d3.event.pageY)+"px")
-						   .html("Team Name:" + d.team + "\n" +"Runs Per Normal Over:"+d.runs_normal_over);
-				})
-				.on("mouseout", function() { tooltip.style("opacity", 0) });
+		bars.append("rect")
+		  .attr("class", "bar2")
+		  .attr("x", function(d) { return x(d.team) + x.rangeBand()/2; })
+		  .attr("width", x.rangeBand() / 2)
+		  .attr("y", function(d) { return y0(d.runs_normal_over); })
+		  .attr("height", function(d,i,j) { return height - y0(d.runs_normal_over); })
+		  .on("mouseover", function(d,i) {
+				tooltip.style("opacity", 1)
+					   .style("left",(d3.event.pageX)+"px")
+					   .style("top",(d3.event.pageY)+"px")
+					   .html("Team Name:" + d.team + "\n" +"Runs Per Normal Over:"+d.runs_normal_over);
+			})
+			.on("mouseout", function() { tooltip.style("opacity", 0) });
 				
-		});
-		
 		<!--Create the legend -->
 		var legend = svg.selectAll(".legend")
 		.data(["runs_super_over", "runs_normal_over"])
