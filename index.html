@@ -33,6 +33,9 @@ body {
   font: 30 30px Helvetica Neue;
   fill: #666;
 }
+.category-name {
+	font-size: 20px;
+}
 
 #tooltip {
     opacity: 0;
@@ -91,14 +94,76 @@ body {
 }
 </style>
 <body>
-<div id="tooltip"></div>
-<button class="button" onclick="about_vis()">Data Visualization</button>
-<div id="all_buttons" style="display:none;"\>
-	<button class="button" onclick="matches_played_won()" >Matches Played Won</button>
-	<button class="button" onclick="win_by()" >WinBy_Wickets_Runs </button>
-	<button class="button" onclick="runs_per_over()" >RunsPerOver</button>
-</div>
-<script src="https://d3js.org/d3.v3.min.js"></script>
+	<div class="slides" id="first_slide" style="background-color:lightblue">
+		<section>
+			<center>
+				<h1>
+					Cricket IPL (Indian Premier League) Tournament:
+				</h1>
+				<h3>
+					A professional Twenty20 cricket league in India. Twenty20 match format is a form of limited overs cricket in that it involves two teams.  
+				</h3>
+				<h3>
+					There have been ten seasons of the IPL tournament starting from 2007 to 2017. A toss decides whether a team will bat or bowl first. 
+				</h3>
+				<h3>
+					Team batting first wins then its win by runs and on the other hand team batting second wins then its considered as win by wickets. 
+					There are in total 20 overs and each over bowled has six deliveries. 			
+				</h3>
+				<div class="fragment" data-fragment-index="0" class="navigate-down" style="cursor: pointer;">
+					<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none;" alt="Arrow Down">
+				</div>
+			</center>
+		</section>
+	</div>
+	
+	<div class="slides" id="second_slide" style="background-color:lightblue">	
+		<section>
+			<h1>
+				Data Visualization
+			</h1>
+			<small>
+				<ol>
+					<li class="fragment" data-fragment-index="1"><strong>Scenes</strong></li>
+					<p class="fragment" data-fragment-index="2">The slides that make up the presentation.
+						These slides can be navigated through guding arrows in the
+					<li class="fragment" data-fragment-index="3"><strong>Annotations</strong></li>
+					<p class="fragment" data-fragment-index="4">Various <strong>tooltips</strong>, <strong>labels</strong> & <strong>legends</strong>; that display dish names and counts.</p>
+					<li class="fragment" data-fragment-index="5"><strong>Parameters</strong></li>
+					<p class="fragment" data-fragment-index="6">The main parameters of this story are dish <strong>names</strong>, their <strong>counts</strong> and appearance <strong>years</strong>.</p>
+					<li class="fragment" data-fragment-index="7"><strong>Triggers</strong></li>
+					<p class="fragment" data-fragment-index="8"><strong>Zoom and Brush</strong> filter, <strong>buttons</strong> with affordances are used to trigger updates in visuals based on new parameters.</p>
+				</ol>
+				<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
+					<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none;" height="60" width="60">
+				</div>
+			</small>							
+		</section>
+	</div>
+	<div class="slides" id="last_slide" style="background-color:lightblue">	
+		<center>
+			<h1>
+				Thank You!!
+			</h1>	
+		</center>
+	</div>	
+	
+	
+	<footer>
+      <small>Copyright © <time datetime="2018">2018</time> by Sudhir Behani</small>
+    </footer>
+	
+	<div id="tooltip"></div>
+	<div id="viz_button" style="display:none;"\>
+		<button class="button" onclick="about_vis()">Data Visualization</button>
+	</div>
+	<div id="all_buttons" style="display:none;"\>
+		<button class="button" onclick="matches_played_won()" >Matches Played Won</button>
+		<button class="button" onclick="win_by()" >WinBy_Wickets_Runs </button>
+		<button class="button" onclick="runs_per_over()" >RunsPerOver</button>
+	</div>
+	<script src="https://d3js.org/d3.v3.min.js"></script>
+	<script src="keypress.js"></script>
 <script>
 	var data_matches = 0;
 	var data_win_by = 0;
@@ -117,7 +182,19 @@ body {
 	var color_rps = "#994499";				
 	var color_rpn = "#ffcc00";
 
+	// clear the screen
+	function clear_screen() {
 	
+		// remove any svg element
+		d3.select("svg").remove();
+		// remove any div elemnts
+		var div_elems = document.getElementsByClassName("slides");
+		var i;
+		for (i = 0; i < div_elems.length; i++) {
+			div_elems[i].style.display = "none";
+		}
+	}
+
     <!--Function to Load the data -->
 	function load_data() {
 		<!--Data Matches -->
@@ -152,9 +229,99 @@ body {
 		  return d;
 		}		  		
 	}
+
+	// init first slides	
+	function init() {
+		
+		// clear complete screen
+		clear_screen();
+		// load data from file
+		load_data();
+		// initialize the first slide
+		var div_elem = document.getElementById("first_slide");
+		div_elem.style.display = "block";
+	}
+	init();
 	
+	// switch to page
+	function switch_page(page) {
+		switch(page) {
+			case 1:
+				clear_screen();
+				d3.select("svg").remove();
+				var div_elem = document.getElementById("first_slide");
+				div_elem.style.display = "block";
+				break;
+			case 2:
+				clear_screen();
+				var div_elem = document.getElementById("second_slide");
+				div_elem.style.display = "block";				
+				break;
+			case 3:
+				break;				
+			case 4:
+				clear_screen();
+				matches_played_won();
+				break;
+			case 5:
+				clear_screen();
+				win_by();
+				break;
+			case 6:
+				clear_screen();
+				runs_per_over();
+				break;
+			case 7:
+				clear_screen();
+				var div_elem = document.getElementById("last_slide");
+				div_elem.style.display = "block";
+				break;				
+			default:
+				clear_screen();
+		}				
+	}
+	
+	// controls the pagination 	
+	var page=1;	
+	function pageup() {
+		return function(event) {
+			event.preventDefault();
+			if (page > 1 ) {
+				page = page - 1;
+			}
+			switch_page(page);
+			console.log("Arrow key pressed - pageup."+page);
+		};
+	}	
+
+	function pagedown() {
+	
+		return function(event) {
+			event.preventDefault();
+			page = page + 1;
+			if (page == 8 ) {
+				page = 1;
+			}			
+			switch_page(page);
+			console.log("Arrow key pressed - pagedown."+page);
+		};
+	}
+	
+	function controls() {
+
+	d3.select('body').call(d3.keybinding()
+		.on('←', pageup())
+		.on('↑', pageup())
+		.on('→', pagedown())
+		.on('↓', pagedown())
+		.on('pgup', pageup())
+		.on('pgdown', pagedown())
+		);	
+	}
+	controls();
+			
     <!--Load the data -->	
-	load_data();
+	//load_data();
 
 	<!--About Button -->	
 	function about_vis(){
@@ -276,7 +443,7 @@ body {
 		.style("text-anchor", "end")
 		.text(function(d) { return d; });		
 	}
-	
+
 	<!--Scene2 -->
 	function win_by() {
 		console.log("Pressed the button win_by");	
