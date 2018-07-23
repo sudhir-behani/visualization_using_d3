@@ -68,6 +68,14 @@ p.date {
 p.main {
     text-align: justify;
 }
+
+form {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  position: absolute;
+  left: 300px;
+  top: 300px;
+}
+
 .button {
     display: inline-block;
     text-decoration: none;
@@ -211,6 +219,12 @@ p.main {
 	<h3>
 	Plot is sorted in descending order of matches won.
 	</h3>		
+	<br><br>
+	<form>
+	  <label><input type="radio" name="mode" id="radio_matches" value="matches_all" checked>All Teams</label>
+	  <label><input type="radio" name="mode" id ="radio_matches_top" value="matches_top">Top 5 Teams</label>
+	</form>
+	<br>
 	<center>
 		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
 			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none;" height="60" width="60">
@@ -343,6 +357,11 @@ p.main {
 	var data_runs_per_over = 0;
 	var team_names = 0;
 	
+	var data_top_matches = 0;
+	var data_top_win_by = 0;
+	var data_top_runs_per_over = 0;
+
+	
 	<!--Colors -->
 	//macthes_played_won
 	var color_mp = "steelblue";
@@ -376,14 +395,22 @@ p.main {
 		d3.tsv("src/matche_play_won.tsv", type_matches, function(error, data) {
 			data_matches = data;
 			console.log(data_matches);		
-			//d3.descending(data.won)
-			//console.log(data);
 		});
 		function type_matches(d) {
 		  d.played = +d.played;
 		  return d;
 		}
-				
+		<!--Top 5 Matches -->
+		console.log('Loading matches top teams data..')
+		d3.tsv("src/top_matche_play_won.tsv", type_matches, function(error, data) {
+			data_top_matches = data;
+			console.log(data_top_matches);		
+		});
+		function type_matches(d) {
+		  d.played = +d.played;
+		  return d;
+		}
+		
 		<!--Data Win By -->
 		console.log('Loading wins_by data..')		
 		d3.tsv("src/win_by.tsv", type_winby, function(error, data) {
@@ -594,32 +621,67 @@ p.main {
 	function matches_played_won(){
 	
 		d3.select("svg").remove();
+						
+		d3.selectAll("input")
+			.on("change", changed);
+		
+		function changed() {
+		  console.log('matches radio changed');	
+		  console.log(this.value);	
+		  if (this.value === "matches_all") matches_all();
+		  else matches_top();
+		}		
+
+		var r_all = document.getElementById("radio_matches").checked;
+		var r_top = document.getElementById("radio_matches_top").checked;
+		
+		if (r_all == true) {
+			matches_bar_chart(data_matches);
+		}
+		else {
+			matches_bar_chart(data_top_matches);
+		}
+		
+		function matches_all() {
+			//clear_screen();
+			d3.selectAll("svg").remove();
+			console.log('matches radio changed inside function all ..');				
+			matches_bar_chart(data_matches);
+		}	
+		
+		function matches_top() {
+			//clear_screen();
+			d3.select("svg").remove();
+			console.log('matches radio changed inside function top ..');				
+			matches_bar_chart(data_top_matches);		
+		}
+		function matches_bar_chart(data) {
 				
-		var margin = {top: 80, right: 80, bottom: 80, left: 80},
-			width = 960 - margin.left - margin.right,
-			height = 500 - margin.top - margin.bottom;
-		var x = d3.scale.ordinal()
-			.rangeRoundBands([0, width], .1);
-		var y0 = d3.scale.linear().domain([300, 1100]).range([height, 0]);
-		
-		var xAxis = d3.svg.axis()
-			.scale(x)
-			.orient("bottom");
+			var margin = {top: 80, right: 80, bottom: 80, left: 80},
+				width = 960 - margin.left - margin.right,
+				height = 500 - margin.top - margin.bottom;
+			var x = d3.scale.ordinal()
+				.rangeRoundBands([0, width], .1);
+			var y0 = d3.scale.linear().domain([300, 1100]).range([height, 0]);
 			
-		// create left yAxis
-		var yAxisLeft = d3.svg.axis().scale(y0).ticks(4).orient("left");
+			var xAxis = d3.svg.axis()
+				.scale(x)
+				.orient("bottom");
+				
+			// create left yAxis
+			var yAxisLeft = d3.svg.axis().scale(y0).ticks(4).orient("left");
 
-		var tooltip = d3.select("#tooltip");
+			var tooltip = d3.select("#tooltip");
 
-		var svg = d3.select("body").append("svg")
-			.attr("width", width + margin.left + margin.right)
-			.attr("height", height + margin.top + margin.bottom)
-		  .append("g")
-			.attr("class", "graph")
-			.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+			var svg = d3.select("body").append("svg")
+				.attr("width", width + margin.left + margin.right)
+				.attr("height", height + margin.top + margin.bottom)
+			  .append("g")
+				.attr("class", "graph")
+				.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 		
-			x.domain(data_matches.map(function(d) { return d.team; }));
-			y0.domain([0, d3.max(data_matches, function(d) { return d.played; })]);
+			x.domain(data.map(function(d) { return d.team; }));
+			y0.domain([0, d3.max(data, function(d) { return d.played; })]);
 			
 			svg.append("g")
 			  .attr("class", "x axis")
@@ -637,7 +699,7 @@ p.main {
 				.style("text-anchor", "end")
 				.text("MATCHES");
 		
-			bars = svg.selectAll(".bar").data(data_matches).enter();	
+			bars = svg.selectAll(".bar").data(data).enter();	
 			bars.append("rect")
 			  .attr("class", "bar1")
 			  .attr("x", function(d) { return x(d.team); })
@@ -668,36 +730,34 @@ p.main {
 				})
 				.on("mouseout", function() { tooltip.style("opacity", 0) });
 				
-		console.log(bars);		
+			console.log(bars);		
 						
-		<!--Create the legend -->
-		var colors = d3.scale.ordinal()
-			.range([color_mp, color_mw]);		
-		//var colors = d3.range([color_mp, color_mw]);		
-		
-		var legend = svg.selectAll(".legend")
-		.data(["Matches Played", "Matches Won"])
-		.enter().append("g")
-		.attr("class", "legend")
-		.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });		
-		
-		legend.append("rect")
-		.attr("x", width - 5)
-		.attr("width", 18)
-		.attr("height", 18)
-		.style("fill", colors);
-		
-		console.log(legend);
-		
-		legend.append("text")
-		.attr("x", width - 10)
-		.attr("y", 9)
-		.attr("dy", ".35em")
-		.style("text-anchor", "end")
-		.text(function(d) { return d; });		
-		
-		
-		//document.write(team_names);
+			<!--Create the legend -->
+			var colors = d3.scale.ordinal()
+				.range([color_mp, color_mw]);		
+			//var colors = d3.range([color_mp, color_mw]);		
+			
+			var legend = svg.selectAll(".legend")
+			.data(["Matches Played", "Matches Won"])
+			.enter().append("g")
+			.attr("class", "legend")
+			.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });		
+			
+			legend.append("rect")
+			.attr("x", width - 5)
+			.attr("width", 18)
+			.attr("height", 18)
+			.style("fill", colors);
+			
+			console.log(legend);
+			
+			legend.append("text")
+			.attr("x", width - 10)
+			.attr("y", 9)
+			.attr("dy", ".35em")
+			.style("text-anchor", "end")
+			.text(function(d) { return d; });		
+		}
 		
 	}
 
