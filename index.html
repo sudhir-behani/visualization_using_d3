@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>IPL Tournament</title>
-	<meta name="description" content="An IPL Tournament visualization">
+	<meta name="description" content="An IPL Tournament Visualization">
 	<meta name="author" content="Sudhir Behani">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -17,7 +17,7 @@ body {
     fill: orange;
 }
 .y.axisLeft text {
-    fill: steelblue;
+    fill: black;
 }
 .axis path,
 .axis line {
@@ -61,7 +61,13 @@ body {
     border: 0px;
 }
 
+p.date {
+    text-align: right;
+}
 
+p.main {
+    text-align: justify;
+}
 .button {
     display: inline-block;
     text-decoration: none;
@@ -94,67 +100,234 @@ body {
 }
 </style>
 <body>
-	<div class="slides" id="first_slide" style="background-color:lightblue">
+	<div class="slides" id="first_slide">
 		<section>
 			<center>
 				<h1>
-					Cricket IPL (Indian Premier League) Tournament:
+					IPL (INDIAN PREMIER LEAGUE) TOURNAMENT
 				</h1>
-				<h3>
-					A professional Twenty20 cricket league in India. Twenty20 match format is a form of limited overs cricket in that it involves two teams.  
-				</h3>
-				<h3>
-					There have been ten seasons of the IPL tournament starting from 2007 to 2017. A toss decides whether a team will bat or bowl first. 
-				</h3>
-				<h3>
-					Team batting first wins then its win by runs and on the other hand team batting second wins then its considered as win by wickets. 
-					There are in total 20 overs and each over bowled has six deliveries. 			
-				</h3>
-				<div class="fragment" data-fragment-index="0" class="navigate-down" style="cursor: pointer;">
-					<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none;" alt="Arrow Down">
+				<br>
+				<small>
+					<ol>				
+						<h3>
+							A professional Twenty20 cricket league in India. Twenty20 match format is a form of limited overs cricket in that it involves two teams.  
+						</h3>
+						<h3>
+							There have been ten seasons of the IPL tournament starting from 2007 to 2017. A toss decides whether a team will bat or bowl first. 
+						</h3>
+						<h3>
+							Team batting first wins then its win by runs and on the other hand team batting second wins then its considered as win by wickets. 
+							There are in total 20 overs and each over bowled has six deliveries. 			
+						</h3>
+					</ol>
+				</small>
+				<br><br>
+				<button class="button" onclick="about_vis()"><strong>About the Visualization</strong></button>
+				<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
+					<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none;" height="60" width="60">
 				</div>
 			</center>
 		</section>
 	</div>
 	
-	<div class="slides" id="second_slide" style="background-color:lightblue">	
+	<div class="slides" id="second_slide">	
 		<section>
 			<h1>
-				Data Visualization
+				The Narative Visualization
 			</h1>
+			<p>
+				This project has used hybrid struture visualization with interactive slideshows to narrate the story of IPL Tournament dataset.     
+			</p>			
+			<h1>
+				Elements of Narrative Visuals 
+			</h1>			
 			<small>
 				<ol>
-					<li class="fragment" data-fragment-index="1"><strong>Scenes</strong></li>
-					<p class="fragment" data-fragment-index="2">The slides that make up the presentation.
-						These slides can be navigated through guding arrows in the
-					<li class="fragment" data-fragment-index="3"><strong>Annotations</strong></li>
-					<p class="fragment" data-fragment-index="4">Various <strong>tooltips</strong>, <strong>labels</strong> & <strong>legends</strong>; that display dish names and counts.</p>
-					<li class="fragment" data-fragment-index="5"><strong>Parameters</strong></li>
-					<p class="fragment" data-fragment-index="6">The main parameters of this story are dish <strong>names</strong>, their <strong>counts</strong> and appearance <strong>years</strong>.</p>
-					<li class="fragment" data-fragment-index="7"><strong>Triggers</strong></li>
-					<p class="fragment" data-fragment-index="8"><strong>Zoom and Brush</strong> filter, <strong>buttons</strong> with affordances are used to trigger updates in visuals based on new parameters.</p>
+					<li class="fragment" data-fragment-index="1"><strong>Scenes:</strong></li>
+					<p class="fragment" data-fragment-index="2">The <strong>scenes</strong> in each page that make up the presentation. These scenes contains text description about the visualization and charts.
+						The scenes can be controlled using up/down arrow or pageup/pagedown keys which enable users to move from scene to scene.
+					</p>
+					<li class="fragment" data-fragment-index="3"><strong>Annotations:</strong></li>
+					<p class="fragment" data-fragment-index="4">The <strong>tooltips</strong>, <strong>labels</strong> & <strong>legends</strong>; that display match statistics.</p>
+					<li class="fragment" data-fragment-index="5"><strong>Parameters:</strong></li>
+					<p class="fragment" data-fragment-index="6">The parameters of this interective presentation are <strong>matches played and won, win by runs and wickets and runs per over in normal and super overs.</strong></p>
+					<li class="fragment" data-fragment-index="7"><strong>Triggers:</strong></li>
+					<p class="fragment" data-fragment-index="8"><strong>Arrows</strong> and <strong>buttons</strong> are used to trigger updates in visulization.</p>
 				</ol>
-				<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
-					<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none;" height="60" width="60">
-				</div>
 			</small>							
+			<center>
+			<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
+				<img src="images/arrow-left.png" style="border: none; background:none; box-shadow:none;" height="60" width="60">
+			</div>			
+			</center>			
 		</section>
 	</div>
-	<div class="slides" id="last_slide" style="background-color:lightblue">	
+		
+	<div class="slides" id="third_slide" text-align="justify" text-justify="inter-word">
+	<center>
+		<h1>
+		THE DATASET
+		</h1>
+		<p>
+		Dataset includes two csv files: matches and deliveries. 
+		</p>
+		
+		<p>
+		<strong>First</strong> file consists of match details for each season (season is represented as year of hosting). Mentioned details comprises of city where the match is played, 
+		names of the participating teams - team1, team2, toss winning team, result of the match whether it is a tie/normal/no result 
+		(no result can be a case when a match is abandoned due to weather conditions), winning team and losing team of the match. 		
+		Winning teams can win a match based on win by wickets and win by runs. Other details like man of the match, match umpires/referees are also included. 
+		</p>
+		
+		<p>
+		<strong>Second</strong> file consists of deliveries which contains number of information for each match played. Inning details for each match, team batting first has innings as 1 and other team batting second has innings as 2. Batting team, bowling team names and this gets revered for innings 2, as team batting first will bowl and team bowling will be batting. So for each match there are 2 innings and each team will bat and bowl once. As this is a twenty over game over column contains each over number and ball column contains information about each bowl per over. Information like batsman, non_striker (batsman) and bowler are also added. Is_super_over columns displays 1 when it’s a super over. For each match, there will be 5 super overs where there are restrictions for placing a fielders inside the circle so that batsman get the liberty to hit long shots. Other details like wide_runs, bye_runs, legbye_runs, noball_runs, penalty_runs, batsman_runs, extra_runs, total_runs these are related to extra runs in a bowl are included. Additional information like players_dismissed, dismissal_kind and fielder are related to which player was dismissed and how he was dismissed. 
+		</p>
+		
+		<a href="https://www.kaggle.com/manasgarg/ipl">Link to Dataset Source</a>
+		
+		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
+			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none;" height="60" width="60">
+		</div>					
+		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
+			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none;" height="60" width="60">
+		</div>		
+	</center>	
+	</div>
+	
+	<div class="slides" id="fourth_slide">
+	<h1>
+	Matches Played vs Matches Won
+	</h1>
+	<h3>
+	This chart shows a comparison between total matches played and matches won by each team as a stacked bar chart.
+	Team name is nominal variable and plotted in X axis, Y axis is discrete value as total matches played and won for each team is discrete.
+	A stacked bar chart was chosen as it’s a plot between nominal and discrete and matches won is a subset of matches played with different colors 
+	for total matches and matches won for effective comparison. 
+	</h3>
+	<h3>
+	In the data source matches.csv team1 and team2 names were shown separately to present the match between two teams. 
+	Combining team1 and team2 which contains all the team names for each match that helped in calculating total matches played by each team.
+	</h3>
+	<h3>
+	Plot is sorted in descending order of matches won.
+	</h3>		
+	<center>
+		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
+			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none;" height="60" width="60">
+		</div>						
+		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
+			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none;" height="60" width="60">
+		</div>	
+	</center>	
+	</div>
+	
+	<div class="slides" id="fifth_slide">
+	<h1>
+	WinByRuns vs WinByWickets
+	</h1>
+	<h3>
+	In this plot we compare all wining team's win by runs and win by wickets count. Team name is a nominal variable as it contains names and plotted on X axis, 
+	Y axis has the count of WinByRuns and WinByWickets. A side by side bar chart was chosen to clearly showcase the win by runs and win by wickets for each winning team. 
+	</h3>
+	<h3>
+	Count of win by runs and wickets were evaluated by a calculation: group by each winning team and counting when win by run or wickets is more than zero.
+	</h3>
+	<h3>
+	Plot is sorted in descending order of win by wickets.
+	</h3>	
+	<center>
+		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
+			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none;" height="60" width="60">
+		</div>						
+		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
+			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none;" height="60" width="60">
+		</div>	
+	</center>	
+	</div>
+
+	<div class="slides" id="sixth_slide">
+	<h1>
+	Runs scored in super over vs normal overs
+	</h1>
+	<h3>
+	This is a plot for winning teams with runs scored in each super over and each normal overs. 
+	Winner is a nominal variable and avg runs scored in super over and avg runs in normal over are continuous variables. 
+	</h3>
+	<h3>
+	As it’s a plot between nominal and continuous so a stacked bar chart was chosen.	
+	</h3>
+	<h3>
+	Plot is sorted in descending order of runs scored in super overs by each team.
+	</h3>
+	<center>
+		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
+			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none;" height="60" width="60">
+		</div>						
+		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
+			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none;" height="60" width="60">
+		</div>	
+	</center>	
+	</div>
+	
+	<div class="slides" id="last_slide">
+	<h1>
+	Inference
+	</h1>
+	<p><b>
+	Matches Played vs Matches Won
+	</b></p>
+	<small>
+		<p>
+		This plot displays the top teams with the max number of wins.
+		</p>
+	</small>
+	<p><b>
+	WinByRuns vs WinByWickets
+	</b></p>
+	<small>
+		<p>
+		If team batting first wins the match they are counted under win by runs else team batting second will win by wickets. 
+		A win by runs and win by wickets for each winning team shows that teams wining by wickets are the same as per matches won. 
+		</p>
+		<p>
+		IPL tournament being only a 20 over match, team batting first have the advantage of playing without any mental difficulty pressure in comparison 
+		to team batting second who have the runs to be scored. So win by wickets is more difficult. Top six teams winning by wickets are the same as teams 
+		with total matches won in previous plot. Though their rankings might be different. 
+		</p>
+	</small>
+	<p><b>
+	Runs scored in super over vs normal overs
+	</b></p>
+	<small>
+		<p>
+		Runs scored plot shows that an important factor for all the winning teams is to have a high scoring rate during the super overs. 
+		The scoring rate is much higher in super overs compared to runs scored in normal overs. 
+		</p>
+		<p>
+		This is true for all the winning teams and so it is an important characteristics teams. Though there could be other important factors which could be explored in 
+		future like home ground, bowling and batting statistics, wickets taken and penalty runs given during bowling.
+		</p>
+	</small>
 		<center>
 			<h1>
 				Thank You!!
 			</h1>	
+		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
+			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none;" height="60" width="60">
+		</div>					
+		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
+			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none;" height="60" width="60">
+		</div>			
 		</center>
 	</div>	
-	
-	
+		
 	<footer>
-      <small>Copyright © <time datetime="2018">2018</time> by Sudhir Behani</small>
+      <small>Compiled by: Sudhir Behani</small>
     </footer>
-	
+	<!--Not used buttons -->
 	<div id="tooltip"></div>
 	<div id="viz_button" style="display:none;"\>
+		<button onclick="about_vis()"><strong>About the Visualization</strong></button>
 		<button class="button" onclick="about_vis()">Data Visualization</button>
 	</div>
 	<div id="all_buttons" style="display:none;"\>
@@ -168,7 +341,8 @@ body {
 	var data_matches = 0;
 	var data_win_by = 0;
 	var data_runs_per_over = 0;
-
+	var team_names = 0;
+	
 	<!--Colors -->
 	//macthes_played_won
 	var color_mp = "steelblue";
@@ -201,13 +375,15 @@ body {
 		console.log('Loading matches data..')
 		d3.tsv("src/matche_play_won.tsv", type_matches, function(error, data) {
 			data_matches = data;
-			console.log(data_matches);
+			console.log(data_matches);		
+			//d3.descending(data.won)
+			//console.log(data);
 		});
 		function type_matches(d) {
 		  d.played = +d.played;
 		  return d;
 		}
-		
+				
 		<!--Data Win By -->
 		console.log('Loading wins_by data..')		
 		d3.tsv("src/win_by.tsv", type_winby, function(error, data) {
@@ -221,25 +397,59 @@ body {
 		<!--Data Runs Per Over -->
 		console.log('Loading run per over data..')		 	
 		d3.tsv("src/runs_per_over.tsv", type_runs, function(error, data) {
+			if(error) console.log("error fetching runs data");
 			data_runs_per_over = data;
 			console.log(data_runs_per_over);
 		});
 		function type_runs(d) {
-		  d.runs_super_over = +d.runs_super_over;
+		  //console.log(d);
+		  if (d !== null) { 
+			d.runs_super_over = +d.runs_super_over;
+		  }
 		  return d;
-		}		  		
+		}
+		<!--Team Full Names -->
+		console.log('Reading Team Names..')
+		team_names = [{
+					'Chennai Super Kings':'CSK',
+					'Deccan Chargers':'DC',
+					'Delhi Daredevils':'DD',
+					'Gujarat Lions':'GL',
+					'Kings XI Punjab':'KXP',
+					'Kochi Tuskers Kerala':'KTK',
+					'Kolkata Knight Riders':'KKR',
+					'Mumbai Indians':'MI',
+					'Pune Warriors':'PW',
+					'Rajasthan Royals':'RR',
+					'Rising Pune Supergiant':'RPS',
+					'Royal Challengers Bangalore':'RCB',
+					'Sunrisers Hyderabad':'SH',
+				}];
+		console.log(team_names[0]);		
 	}
 
+	// body font size
+	function body_font (size) {
+		var b_elem = document.body
+		console.log("checking body font..");
+		b_elem.style.fontSize = size;
+		
+		console.log(b_elem.style.fontSize);			
+	}
+	
 	// init first slides	
 	function init() {
-		
+
 		// clear complete screen
 		clear_screen();
+		body_font("20px")
 		// load data from file
 		load_data();
 		// initialize the first slide
 		var div_elem = document.getElementById("first_slide");
 		div_elem.style.display = "block";
+		div_elem.top = "50%";
+		div_elem.left = "50%";
 	}
 	init();
 	
@@ -248,31 +458,51 @@ body {
 		switch(page) {
 			case 1:
 				clear_screen();
-				d3.select("svg").remove();
+				body_font("20px")
 				var div_elem = document.getElementById("first_slide");
 				div_elem.style.display = "block";
+				div_elem.top = "50%";
+				div_elem.left = "50%";
 				break;
 			case 2:
 				clear_screen();
-				var div_elem = document.getElementById("second_slide");
-				div_elem.style.display = "block";				
+				body_font("20px")								
+				var div_elem = document.getElementById("third_slide");
+				div_elem.style.display = "block";							
 				break;
 			case 3:
-				break;				
+				clear_screen();
+				body_font("10px")								
+				var div_elem = document.getElementById("fourth_slide");
+				div_elem.style.display = "block";
+				div_elem.style.top = "600px";
+				div_elem.style.left = "150px";
+				
+				matches_played_won();
+				break;
 			case 4:
 				clear_screen();
-				matches_played_won();
+				body_font("10px")								
+				var div_elem = document.getElementById("fifth_slide");
+				div_elem.style.display = "block";
+				div_elem.style.top = "600px";
+				div_elem.style.left = "150px";
+				
+				win_by();
 				break;
 			case 5:
 				clear_screen();
-				win_by();
+				body_font("10px")								
+				var div_elem = document.getElementById("sixth_slide");
+				div_elem.style.display = "block";
+				div_elem.style.top = "600px";
+				div_elem.style.left = "150px";
+				
+				runs_per_over();
 				break;
 			case 6:
 				clear_screen();
-				runs_per_over();
-				break;
-			case 7:
-				clear_screen();
+				body_font("20px")								
 				var div_elem = document.getElementById("last_slide");
 				div_elem.style.display = "block";
 				break;				
@@ -283,63 +513,86 @@ body {
 	
 	// controls the pagination 	
 	var page=1;	
+	var rl_page = 0;
 	function pageup() {
+	
 		return function(event) {
-			event.preventDefault();
-			if (page > 1 ) {
-				page = page - 1;
+		if (rl_page !== 1) {
+				event.preventDefault();
+				if (page > 1 ) {
+					page = page - 1;
+				}
+				switch_page(page);
+				console.log("Arrow key pressed - pageup."+page);
 			}
-			switch_page(page);
-			console.log("Arrow key pressed - pageup."+page);
 		};
 	}	
 
 	function pagedown() {
 	
 		return function(event) {
+		if (rl_page !== 1) {		
 			event.preventDefault();
 			page = page + 1;
-			if (page == 8 ) {
+			if (page == 7 ) {
 				page = 1;
 			}			
 			switch_page(page);
 			console.log("Arrow key pressed - pagedown."+page);
+		  }	
 		};
 	}
+
+	function pageleft() {
+		console.log("Left key pressed: "+rl_page);
+		return function(event) {
+		if (rl_page === 1) {		
+			event.preventDefault();
+			rl_page = 0;
+			switch_page(page);
+			console.log("Arrow key pressed - pageup."+page);				
+		  }
+		};
+	}	
+
+	<!--About Button -->	
+	function about_vis() {
+	
+		console.log("Pressed the button about_viz");	
+		clear_screen();
+		body_font("20px")				
+		var div_elem = document.getElementById("second_slide");
+		div_elem.style.display = "block";				
+		rl_page = 1; // set the rl_page
+		//<!--Display 3 buttons -->			
+		//d3.select("svg").remove();		
+		//var elem = document.getElementById("all_buttons");
+		//console.log(elem)
+		//if (elem.style.display === "none") {
+		//	elem.style.display = "block";
+		//} else {
+		//	elem.style.display = "none";
+		//}
+	}
+	
 	
 	function controls() {
 
 	d3.select('body').call(d3.keybinding()
-		.on('←', pageup())
+		.on('←', pageleft())
 		.on('↑', pageup())
-		.on('→', pagedown())
 		.on('↓', pagedown())
 		.on('pgup', pageup())
 		.on('pgdown', pagedown())
 		);	
 	}
 	controls();
-			
-    <!--Load the data -->	
-	//load_data();
-
-	<!--About Button -->	
-	function about_vis(){
-		console.log("Pressed the button about_viz");
-		d3.select("svg").remove();		
-		var elem = document.getElementById("all_buttons");
-		console.log(elem)
-		if (elem.style.display === "none") {
-			elem.style.display = "block";
-		} else {
-			elem.style.display = "none";
-		}
-	}
-	
+				
 	<!--Visualization Description -->	
 	
 	<!--Scene1 -->
-	function matches_played_won(){	
+	function matches_played_won(){
+	
 		d3.select("svg").remove();
 				
 		var margin = {top: 80, right: 80, bottom: 80, left: 80},
@@ -382,7 +635,7 @@ body {
 				.attr("dy", "-2em")
 				.style("text-anchor", "end")
 				.style("text-anchor", "end")
-				.text("Matches");
+				.text("MATCHES");
 		
 			bars = svg.selectAll(".bar").data(data_matches).enter();	
 			bars.append("rect")
@@ -442,6 +695,10 @@ body {
 		.attr("dy", ".35em")
 		.style("text-anchor", "end")
 		.text(function(d) { return d; });		
+		
+		
+		//document.write(team_names);
+		
 	}
 
 	<!--Scene2 -->
@@ -488,7 +745,7 @@ body {
 			.attr("dy", "-2em")
 			.style("text-anchor", "end")
 			.style("text-anchor", "end")
-			.text("Win By");
+			.text("WIN BY");
 					
 		bars = svg.selectAll(".bar").data(data_win_by).enter();	
 		bars.append("rect")
@@ -556,7 +813,7 @@ body {
 	function runs_per_over() {
 		console.log("Pressed the button runs_per_over");	
 		d3.select("svg").remove();
-		var margin = {top: 80, right: 80, bottom: 80, left: 80},
+		var margin = {top: 80, right: 80, bottom: 80, left: 110},
 			width = 960 - margin.left - margin.right,
 			height = 500 - margin.top - margin.bottom;
 		var x = d3.scale.ordinal()
@@ -596,7 +853,7 @@ body {
 			.attr("dy", "-2em")
 			.style("text-anchor", "end")
 			.style("text-anchor", "end")
-			.text("Runs Per Over");
+			.text("AVG RUNS PER OVER");
 			
 		bars = svg.selectAll(".bar").data(data_runs_per_over).enter();	
 		bars.append("rect")
@@ -639,7 +896,7 @@ body {
 			.range([color_rps, color_rpn]);		
 		
 		var legend = svg.selectAll(".legend")
-		.data(["Runs Per Normal Over", "Runs Per Super Over"])
+		.data(["Avg Runs Per Super Over", "Avg Runs Per Normal Over"])
 		.enter().append("g")
 		.attr("class", "legend")
 		.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });		
