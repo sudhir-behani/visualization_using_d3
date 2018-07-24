@@ -73,7 +73,7 @@ form {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   position: absolute;
   left: 300px;
-  top: 300px;
+  top: 180px;
 }
 
 .button {
@@ -108,7 +108,11 @@ form {
 }
 </style>
 <body>
-	<div class="slides" id="first_slide">
+	<script>
+	<!--Load All dataset -->
+	
+	</script>
+	<div class="slides" id="first_slide" hidden>
 		<section>
 			<center>
 				<h1>
@@ -118,7 +122,7 @@ form {
 				<small>
 					<ol>				
 						<h3>
-							A professional Twenty20 cricket league in India. Twenty20 match format is a form of limited overs cricket in that it involves two teams.  
+							A professional Twenty20 cricket league in India. Twenty20 match is a form of limited overs cricket and it involves two teams.  
 						</h3>
 						<h3>
 							There have been ten seasons of the IPL tournament starting from 2007 to 2017. A toss decides whether a team will bat or bowl first. 
@@ -128,17 +132,21 @@ form {
 							There are in total 20 overs and each over bowled has six deliveries. 			
 						</h3>
 					</ol>
+					<br><br>
+					<p>
+					Created by Sudhir Behani
+					</p>
 				</small>
 				<br><br>
 				<button class="button" onclick="about_vis()"><strong>About the Visualization</strong></button>
 				<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
-					<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none;" height="60" width="60">
+					<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:580px; left:720px; width:80px;" height="60" width="60">
 				</div>
 			</center>
 		</section>
 	</div>
 	
-	<div class="slides" id="second_slide">	
+	<div class="slides" id="second_slide" hidden>	
 		<section>
 			<h1>
 				The Narative Visualization
@@ -153,12 +161,12 @@ form {
 				<ol>
 					<li class="fragment" data-fragment-index="1"><strong>Scenes:</strong></li>
 					<p class="fragment" data-fragment-index="2">The <strong>scenes</strong> in each page that make up the presentation. These scenes contains text description about the visualization and charts.
-						The scenes can be controlled using up/down arrow or pageup/pagedown keys which enable users to move from scene to scene.
+						They can be controlled using arrow, pageup and pagedown keys which enable users to move from scene to scene.
 					</p>
 					<li class="fragment" data-fragment-index="3"><strong>Annotations:</strong></li>
 					<p class="fragment" data-fragment-index="4">The <strong>tooltips</strong>, <strong>labels</strong> & <strong>legends</strong>; that display match statistics.</p>
 					<li class="fragment" data-fragment-index="5"><strong>Parameters:</strong></li>
-					<p class="fragment" data-fragment-index="6">The parameters of this interective presentation are <strong>matches played and won, win by runs and wickets and runs per over in normal and super overs.</strong></p>
+					<p class="fragment" data-fragment-index="6">The parameters of this interective presentation are <strong>matches played and won, win by runs and wickets and avg runs per over in normal and super overs.</strong></p>
 					<li class="fragment" data-fragment-index="7"><strong>Triggers:</strong></li>
 					<p class="fragment" data-fragment-index="8"><strong>Arrows</strong> and <strong>buttons</strong> are used to trigger updates in visulization.</p>
 				</ol>
@@ -171,7 +179,7 @@ form {
 		</section>
 	</div>
 		
-	<div class="slides" id="third_slide" text-align="justify" text-justify="inter-word">
+	<div class="slides" id="third_slide" hidden>
 	<center>
 		<h1>
 		THE DATASET
@@ -194,15 +202,15 @@ form {
 		<a href="https://www.kaggle.com/manasgarg/ipl">Link to Dataset Source</a>
 		
 		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
-			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none;" height="60" width="60">
+			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none; position:absolute; top:510px; left:720px; width:80px;" height="60" width="60">
 		</div>					
 		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
-			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none;" height="60" width="60">
+			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:560px; left:720px; width:80px;" height="60" width="60">
 		</div>		
 	</center>	
 	</div>
 	
-	<div class="slides" id="fourth_slide">
+	<div class="slides" id="fourth_slide" hidden>
 	<h1>
 	Matches Played vs Matches Won
 	</h1>
@@ -226,16 +234,16 @@ form {
 	</form>
 	<br>
 	<center>
-		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
-			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none;" height="60" width="60">
+		<div class="fragment" data-fragment-index="9" style="cursor: pointer;" 	>
+			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none; position:absolute; top:630px; left:500px; width:80px;" height="60" width="60">
 		</div>						
 		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
-			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none;" height="60" width="60">
+			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:680px; left:500px; width:80px;" height="60" width="60">
 		</div>	
 	</center>	
 	</div>
 	
-	<div class="slides" id="fifth_slide">
+	<div class="slides" id="fifth_slide" hidden>
 	<h1>
 	WinByRuns vs WinByWickets
 	</h1>
@@ -249,17 +257,23 @@ form {
 	<h3>
 	Plot is sorted in descending order of win by wickets.
 	</h3>	
+	<br><br>
+	<form>
+	  <label><input type="radio" name="mode" id="radio_winby" value="winby_all" checked>All Teams</label>
+	  <label><input type="radio" name="mode" id ="radio_winby_top" value="winby_top">Top 5 Teams</label>
+	</form>
+	<br>	
 	<center>
-		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
-			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none;" height="60" width="60">
+		<div class="fragment" data-fragment-index="9" style="cursor: pointer; ">
+			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none; position:absolute; top:630px; left:500px; width:80px;" height="60" width="60">
 		</div>						
 		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
-			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none;" height="60" width="60">
+			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:680px; left:500px; width:80px;" height="60" width="60">
 		</div>	
 	</center>	
 	</div>
 
-	<div class="slides" id="sixth_slide">
+	<div class="slides" id="sixth_slide" hidden>
 	<h1>
 	Runs scored in super over vs normal overs
 	</h1>
@@ -273,17 +287,23 @@ form {
 	<h3>
 	Plot is sorted in descending order of runs scored in super overs by each team.
 	</h3>
+	<br><br>
+	<form>
+	  <label><input type="radio" name="mode" id="radio_runs" value="runs_all" checked>All Teams</label>
+	  <label><input type="radio" name="mode" id ="radio_runs_top" value="runs_top">Top 5 Teams</label>
+	</form>
+	<br>		
 	<center>
 		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
-			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none;" height="60" width="60">
+			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none; position:absolute; top:630px; left:500px; width:80px;" height="60" width="60">
 		</div>						
 		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
-			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none;" height="60" width="60">
+			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:680px; left:500px; width:80px;" height="60" width="60">
 		</div>	
 	</center>	
 	</div>
 	
-	<div class="slides" id="last_slide">
+	<div class="slides" id="last_slide" hidden>
 	<h1>
 	Inference
 	</h1>
@@ -327,15 +347,15 @@ form {
 				Thank You!!
 			</h1>	
 		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
-			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none;" height="60" width="60">
+			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none; position:absolute; top:600px; left:720px; width:80px;" height="60" width="60">
 		</div>					
 		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
-			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none;" height="60" width="60">
+			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:650px; left:720px; width:80px;" height="60" width="60">
 		</div>			
 		</center>
 	</div>	
 		
-	<footer>
+	<footer id="main_footer" hidden>
       <small>Compiled by: Sudhir Behani</small>
     </footer>
 	<!--Not used buttons -->
@@ -352,6 +372,7 @@ form {
 	<script src="https://d3js.org/d3.v3.min.js"></script>
 	<script src="keypress.js"></script>
 <script>
+	<!-- Dataset global variables -->
 	var data_matches = 0;
 	var data_win_by = 0;
 	var data_runs_per_over = 0;
@@ -360,7 +381,6 @@ form {
 	var data_top_matches = 0;
 	var data_top_win_by = 0;
 	var data_top_runs_per_over = 0;
-
 	
 	<!--Colors -->
 	//macthes_played_won
@@ -368,8 +388,8 @@ form {
 	var color_mw = "orange";
 
 	// win_by
-	var color_wbr = "#69c242";
-	var color_wbw = "#dd4477";
+	var color_wbr = "#dd4477";
+	var color_wbw = "#69c242";
 	
 	// runs per over
 	var color_rps = "#994499";				
@@ -387,9 +407,10 @@ form {
 			div_elems[i].style.display = "none";
 		}
 	}
-
+	clear_screen();
+	
     <!--Function to Load the data -->
-	function load_data() {
+		function load_data_first_page() {
 		<!--Data Matches -->
 		console.log('Loading matches data..')
 		d3.tsv("src/matche_play_won.tsv", type_matches, function(error, data) {
@@ -410,6 +431,8 @@ form {
 		  d.played = +d.played;
 		  return d;
 		}
+	}
+	function load_data() {
 		
 		<!--Data Win By -->
 		console.log('Loading wins_by data..')		
@@ -421,6 +444,18 @@ form {
 		  d.win_by_runs = +d.win_by_runs;
 		  return d;
 		}
+		
+		<!--Top 5 WinsBy -->
+		console.log('Loading wins_by data..')		
+		d3.tsv("src/top_win_by.tsv", type_winby, function(error, data) {
+			data_top_win_by = data;
+			console.log(data_top_win_by);
+		});
+		function type_winby(d) {
+		  d.win_by_runs = +d.win_by_runs;
+		  return d;
+		}
+		
 		<!--Data Runs Per Over -->
 		console.log('Loading run per over data..')		 	
 		d3.tsv("src/runs_per_over.tsv", type_runs, function(error, data) {
@@ -435,6 +470,22 @@ form {
 		  }
 		  return d;
 		}
+		
+		<!--Data Runs Per Over -->
+		console.log('Loading run per over data..')		 	
+		d3.tsv("src/top_runs_per_over.tsv", type_runs, function(error, data) {
+			if(error) console.log("error fetching runs data");
+			data_top_runs_per_over = data;
+			console.log(data_top_runs_per_over);
+		});
+		function type_runs(d) {
+		  //console.log(d);
+		  if (d !== null) { 
+			d.runs_super_over = +d.runs_super_over;
+		  }
+		  return d;
+		}
+		
 		<!--Team Full Names -->
 		console.log('Reading Team Names..')
 		team_names = [{
@@ -470,13 +521,20 @@ form {
 		// clear complete screen
 		clear_screen();
 		body_font("20px")
-		// load data from file
-		load_data();
+		// load data for first slide
+		load_data_first_page();		
 		// initialize the first slide
 		var div_elem = document.getElementById("first_slide");
 		div_elem.style.display = "block";
 		div_elem.top = "50%";
 		div_elem.left = "50%";
+		
+		// load rest of the data for all slides		
+		load_data();
+		
+		//main_footer
+		//var foot = document.getElementById("main_footer");
+		//foot.style.display = "block";		
 	}
 	init();
 	
@@ -582,7 +640,7 @@ form {
 		};
 	}	
 
-	<!--About Button -->	
+	<!--Narative Visualization -->	
 	function about_vis() {
 	
 		console.log("Pressed the button about_viz");	
@@ -602,7 +660,7 @@ form {
 		//}
 	}
 	
-	
+	<!-- Arrow key controls -->	
 	function controls() {
 
 	d3.select('body').call(d3.keybinding()
@@ -614,9 +672,7 @@ form {
 		);	
 	}
 	controls();
-				
-	<!--Visualization Description -->	
-	
+
 	<!--Scene1 -->
 	function matches_played_won(){
 	
@@ -657,7 +713,7 @@ form {
 		}
 		function matches_bar_chart(data) {
 				
-			var margin = {top: 80, right: 80, bottom: 80, left: 80},
+			var margin = {top: 30, right: 80, bottom: 80, left: 80},
 				width = 960 - margin.left - margin.right,
 				height = 500 - margin.top - margin.bottom;
 			var x = d3.scale.ordinal()
@@ -731,7 +787,12 @@ form {
 				.on("mouseout", function() { tooltip.style("opacity", 0) });
 				
 			console.log(bars);		
-						
+			// Create line above the rect
+			var XLine = d3.scale.ordinal()
+            .rangeRoundPoints([0, width], .1);
+			
+					
+			
 			<!--Create the legend -->
 			var colors = d3.scale.ordinal()
 				.range([color_mp, color_mw]);		
@@ -763,216 +824,294 @@ form {
 
 	<!--Scene2 -->
 	function win_by() {
+	
 		console.log("Pressed the button win_by");	
 		d3.select("svg").remove();
-		var margin = {top: 80, right: 80, bottom: 80, left: 80},
-			width = 960 - margin.left - margin.right,
-			height = 500 - margin.top - margin.bottom;
-		var x = d3.scale.ordinal()
-			.rangeRoundBands([0, width], .1);
-		var y0 = d3.scale.linear().domain([300, 1100]).range([height, 0]);
 		
-		var xAxis = d3.svg.axis()
-			.scale(x)
-			.orient("bottom");
-			
-		// create left yAxis
-		var yAxisLeft = d3.svg.axis().scale(y0).ticks(4).orient("left");
-
-		var tooltip = d3.select("#tooltip");
-
-		var svg = d3.select("body").append("svg")
-			.attr("width", width + margin.left + margin.right)
-			.attr("height", height + margin.top + margin.bottom)
-		  .append("g")
-			.attr("class", "graph")
-			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+		d3.selectAll("input")
+			.on("change", changed);
 		
-		x.domain(data_win_by.map(function(d) { return d.team; }));
-		y0.domain([0, d3.max(data_win_by, function(d) { return d.win_by_runs; })]);
- 
-		svg.append("g")
-		  .attr("class", "x axis")
-		  .attr("transform", "translate(0," + height + ")")
-		  .call(xAxis);
-		  
-		svg.append("g")
-		  .attr("class", "y axis axisLeft")
-		  .attr("transform", "translate(0,0)")
-		  .call(yAxisLeft)
-		  .append("text")
-			.attr("y", 6)
-			.attr("dy", "-2em")
-			.style("text-anchor", "end")
-			.style("text-anchor", "end")
-			.text("WIN BY");
-					
-		bars = svg.selectAll(".bar").data(data_win_by).enter();	
-		bars.append("rect")
-		  .attr("class", "bar1")
-		  .attr("x", function(d) { return x(d.team); })
-		  .attr("width", x.rangeBand()/2)
-		  .attr("y", function(d) { return y0(d.win_by_runs); })
-		  .attr("height", function(d,i,j) { return height - y0(d.win_by_runs); })
-		  .attr("fill", color_wbr)		
-		  .on("mouseover", function(d,i) {
-				tooltip.style("opacity", 1)
-					   .style("left",(d3.event.pageX)+"px")
-					   .style("top",(d3.event.pageY)+"px")
-					   .html("Team Name:" + d.team + "\n" +"Win by runs:"+d.win_by_runs);
-			})
-		   .on("mouseout", function() { tooltip.style("opacity", 0) });
+		function changed() {
+		  console.log('winby radio changed');	
+		  console.log(this.value);	
+		  if (this.value === "winby_all") winby_all();
+		  else winby_top();
+		}		
 
-		bars.append("rect")
-		  .attr("class", "bar2")
-		  .attr("x", function(d) { return x(d.team) + x.rangeBand()/2; })
-		  .attr("width", x.rangeBand() / 2)
-		  .attr("y", function(d) { return y0(d.win_by_wickets); })
-		  .attr("height", function(d,i,j) { return height - y0(d.win_by_wickets); })
-		  .attr("fill", color_wbw)
-		  .on("mouseover", function(d,i) {
-				tooltip.style("opacity", 1)
-					   .style("left",(d3.event.pageX)+"px")
-					   .style("top",(d3.event.pageY)+"px")
-					   .html("Team Name:" + d.team + "\n" +"Win by wickets:"+d.win_by_wickets);
-			})
-			.on("mouseout", function() { tooltip.style("opacity", 0) });
-				
-		function type(d) {
-		  d.win_by_runs = +d.win_by_runs;
-		  return d;
+		var r_all = document.getElementById("radio_winby").checked;
+		var r_top = document.getElementById("radio_winby_top").checked;
+		
+		if (r_all == true) {
+			winby_bar_chart(data_win_by);
 		}
+		else {
+			winby_bar_chart(data_top_win_by);
+		}
+		
+		function winby_all() {
+			//clear_screen();
+			d3.selectAll("svg").remove();
+			console.log('winby radio changed inside function all ..');				
+			winby_bar_chart(data_win_by);
+		}	
+		
+		function winby_top() {
+			//clear_screen();
+			d3.select("svg").remove();
+			console.log('winby radio changed inside function top ..');				
+			winby_bar_chart(data_top_win_by);		
+		}
+		
+		function winby_bar_chart(data) {
+		
+			var margin = {top: 80, right: 80, bottom: 80, left: 80},
+				width = 960 - margin.left - margin.right,
+				height = 500 - margin.top - margin.bottom;
+			var x = d3.scale.ordinal()
+				.rangeRoundBands([0, width], .1);
+			var y0 = d3.scale.linear().domain([300, 1100]).range([height, 0]);
+			
+			var xAxis = d3.svg.axis()
+				.scale(x)
+				.orient("bottom");
+				
+			// create left yAxis
+			var yAxisLeft = d3.svg.axis().scale(y0).ticks(4).orient("left");
 
-		<!--Create the legend -->
-		var colors = d3.scale.ordinal()
-			.range([color_wbr, color_wbw]);		
-		
-		var legend = svg.selectAll(".legend")
-		.data(["Win By Runs", "Win By Wickets"])
-		.enter().append("g")
-		.attr("class", "legend")
-		.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });		
-		
-		legend.append("rect")
-		.attr("x", width - 5)
-		.attr("width", 18)
-		.attr("height", 18)
-		.style("fill", colors);
-		
-		console.log(legend);
-		
-		legend.append("text")
-		.attr("x", width - 10)
-		.attr("y", 9)
-		.attr("dy", ".35em")
-		.style("text-anchor", "end")
-		.text(function(d) { return d; });		
+			var tooltip = d3.select("#tooltip");
+
+			var svg = d3.select("body").append("svg")
+				.attr("width", width + margin.left + margin.right)
+				.attr("height", height + margin.top + margin.bottom)
+			  .append("g")
+				.attr("class", "graph")
+				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+			
+			x.domain(data.map(function(d) { return d.team; }));
+			y0.domain([0, d3.max(data, function(d) { return d.win_by_runs; })]);
+	 
+			svg.append("g")
+			  .attr("class", "x axis")
+			  .attr("transform", "translate(0," + height + ")")
+			  .call(xAxis);
+			  
+			svg.append("g")
+			  .attr("class", "y axis axisLeft")
+			  .attr("transform", "translate(0,0)")
+			  .call(yAxisLeft)
+			  .append("text")
+				.attr("y", 6)
+				.attr("dy", "-2em")
+				.style("text-anchor", "end")
+				.style("text-anchor", "end")
+				.text("WIN BY");
+						
+			bars = svg.selectAll(".bar").data(data).enter();	
+			bars.append("rect")
+			  .attr("class", "bar1")
+			  .attr("x", function(d) { return x(d.team); })
+			  .attr("width", x.rangeBand()/2)
+			  .attr("y", function(d) { return y0(d.win_by_wickets); })
+			  .attr("height", function(d,i,j) { return height - y0(d.win_by_wickets); })
+			  .attr("fill", color_wbr)		
+			  .on("mouseover", function(d,i) {
+					tooltip.style("opacity", 1)
+						   .style("left",(d3.event.pageX)+"px")
+						   .style("top",(d3.event.pageY)+"px")
+						   .html("Team Name:" + d.team + "\n" +"Win by wickets:"+d.win_by_wickets);
+				})
+			   .on("mouseout", function() { tooltip.style("opacity", 0) });
+
+			bars.append("rect")
+			  .attr("class", "bar2")
+			  .attr("x", function(d) { return x(d.team) + x.rangeBand()/2; })
+			  .attr("width", x.rangeBand() / 2)
+			  .attr("y", function(d) { return y0(d.win_by_runs); })
+			  .attr("height", function(d,i,j) { return height - y0(d.win_by_runs); })
+			  .attr("fill", color_wbw)
+			  .on("mouseover", function(d,i) {
+					tooltip.style("opacity", 1)
+						   .style("left",(d3.event.pageX)+"px")
+						   .style("top",(d3.event.pageY)+"px")
+						   .html("Team Name:" + d.team + "\n" +"Win by wickets:"+d.win_by_runs);
+				})
+				.on("mouseout", function() { tooltip.style("opacity", 0) });
+					
+			function type(d) {
+			  d.win_by_wickets = +d.win_by_wickets;
+			  return d;
+			}
+
+			<!--Create the legend -->
+			var colors = d3.scale.ordinal()
+				.range([color_wbr, color_wbw]);		
+			
+			var legend = svg.selectAll(".legend")
+			.data(["Win By Wickets", "Win By Runs"])
+			.enter().append("g")
+			.attr("class", "legend")
+			.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });		
+			
+			legend.append("rect")
+			.attr("x", width - 5)
+			.attr("width", 18)
+			.attr("height", 18)
+			.style("fill", colors);
+			
+			console.log(legend);
+			
+			legend.append("text")
+			.attr("x", width - 10)
+			.attr("y", 9)
+			.attr("dy", ".35em")
+			.style("text-anchor", "end")
+			.text(function(d) { return d; });		
+		}
 	}
 	
 	<!--Scene3 -->
 	function runs_per_over() {
+	
 		console.log("Pressed the button runs_per_over");	
 		d3.select("svg").remove();
-		var margin = {top: 80, right: 80, bottom: 80, left: 110},
-			width = 960 - margin.left - margin.right,
-			height = 500 - margin.top - margin.bottom;
-		var x = d3.scale.ordinal()
-			.rangeRoundBands([0, width], .1);
-		var y0 = d3.scale.linear().domain([300, 1100]).range([height, 0]);
 		
-		var xAxis = d3.svg.axis()
-			.scale(x)
-			.orient("bottom");
-			
-		// create left yAxis
-		var yAxisLeft = d3.svg.axis().scale(y0).ticks(4).orient("left");
-
-		var tooltip_r = d3.select("#tooltip");
-
-		var svg = d3.select("body").append("svg")
-			.attr("width", width + margin.left + margin.right)
-			.attr("height", height + margin.top + margin.bottom)
-		  .append("g")
-			.attr("class", "graph")
-			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+		d3.selectAll("input")
+			.on("change", changed);
 		
-		x.domain(data_runs_per_over.map(function(d) { return d.team; }));
-		y0.domain([0, d3.max(data_runs_per_over, function(d) { return d.runs_super_over; })]);
- 
-		svg.append("g")
-		  .attr("class", "x axis")
-		  .attr("transform", "translate(0," + height + ")")
-		  .call(xAxis);
-		  
-		svg.append("g")
-		  .attr("class", "y axis axisLeft")
-		  .attr("transform", "translate(0,0)")
-		  .call(yAxisLeft)
-		  .append("text")
-			.attr("y", 6)
-			.attr("dy", "-2em")
-			.style("text-anchor", "end")
-			.style("text-anchor", "end")
-			.text("AVG RUNS PER OVER");
-			
-		bars = svg.selectAll(".bar").data(data_runs_per_over).enter();	
-		bars.append("rect")
-		  .attr("class", "bar1")
-		  .attr("x", function(d) { return x(d.team); })
-		  .attr("width", x.rangeBand()/2)
-		  .attr("y", function(d) { return y0(d.runs_super_over); })
-		  .attr("height", function(d,i,j) { return height - y0(d.runs_super_over); }) 
-		  .attr("fill", "#994499")				  
-		  .on("mouseover", function(d,i) {
-				tooltip_r.style("opacity", 1)
-					   .style("left",(d3.event.pageX)+"px")
-					   .style("top",(d3.event.pageY)+"px")
-					   .html("Team Name:" + d.team + "\n" + "Runs Per Super Over:"+d.runs_super_over);
-			})
-		   .on("mouseout", function() { tooltip_r.style("opacity", 0) });
-
-		bars.append("rect")
-		  .attr("class", "bar2")
-		  .attr("x", function(d) { return x(d.team); })
-		  .attr("width", x.rangeBand() / 2)
-		  .attr("y", function(d) { return y0(d.runs_normal_over); })
-		  .attr("height", function(d,i,j) { return height - y0(d.runs_normal_over); })
-		  .attr("fill", color_rpn)				  
-		  .on("mouseover", function(d,i) {
-				tooltip_r.style("opacity", 1)
-					   .style("left",(d3.event.pageX)+"px")
-					   .style("top",(d3.event.pageY)+"px")
-					   .html("Team Name:" + d.team + "\n" + "Runs Per Normal Over:"+d.runs_normal_over);
-			})
-			.on("mouseout", function() { tooltip_r.style("opacity", 0) });
-				
-		function type(d) {
-		  d.runs_super_over = +d.runs_super_over;
-		  return d;
+		function changed() {
+		  console.log('runs radio changed');	
+		  console.log(this.value);	
+		  if (this.value === "runs_all") runs_all();
+		  else runs_top();
 		}		
 
-		<!--Create the legend -->
-		var colors = d3.scale.ordinal()
-			.range([color_rps, color_rpn]);		
+		var r_all = document.getElementById("radio_runs").checked;
+		var r_top = document.getElementById("radio_runs_top").checked;
 		
-		var legend = svg.selectAll(".legend")
-		.data(["Avg Runs Per Super Over", "Avg Runs Per Normal Over"])
-		.enter().append("g")
-		.attr("class", "legend")
-		.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });		
+		if (r_all == true) {
+			runs_bar_chart(data_runs_per_over);
+		}
+		else {
+			runs_bar_chart(data_top_runs_per_over);
+		}
 		
-		legend.append("rect")
-		.attr("x", width - 5)
-		.attr("width", 18)
-		.attr("height", 18)
-		.style("fill", colors);
+		function runs_all() {
+			//clear_screen();
+			d3.selectAll("svg").remove();
+			console.log('runs radio changed inside function all ..');				
+			runs_bar_chart(data_runs_per_over);
+		}	
 		
-		legend.append("text")
-		.attr("x", width - 10)
-		.attr("y", 9)
-		.attr("dy", ".35em")
-		.style("text-anchor", "end")
-		.text(function(d) { return d; });				
+		function runs_top() {
+			//clear_screen();
+			d3.select("svg").remove();
+			console.log('runs radio changed inside function top ..');				
+			runs_bar_chart(data_top_runs_per_over);		
+		}
+		
+		function runs_bar_chart(data) {
+		
+			var margin = {top: 60, right: 80, bottom: 80, left: 110},
+				width = 960 - margin.left - margin.right,
+				height = 500 - margin.top - margin.bottom;
+			var x = d3.scale.ordinal()
+				.rangeRoundBands([0, width], .1);
+			var y0 = d3.scale.linear().domain([300, 1100]).range([height, 0]);
+			
+			var xAxis = d3.svg.axis()
+				.scale(x)
+				.orient("bottom");
+				
+			// create left yAxis
+			var yAxisLeft = d3.svg.axis().scale(y0).ticks(4).orient("left");
+
+			var tooltip_r = d3.select("#tooltip");
+
+			var svg = d3.select("body").append("svg")
+				.attr("width", width + margin.left + margin.right)
+				.attr("height", height + margin.top + margin.bottom)
+				.append("g")
+				.attr("class", "graph")
+				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+			
+			x.domain(data.map(function(d) { return d.team; }));
+			y0.domain([0, d3.max(data, function(d) { return d.runs_super_over; })]);
+	 
+			svg.append("g")
+			  .attr("class", "x axis")
+			  .attr("transform", "translate(0," + height + ")")
+			  .call(xAxis);
+			  
+			svg.append("g")
+			  .attr("class", "y axis axisLeft")
+			  .attr("transform", "translate(0,0)")
+			  .call(yAxisLeft)
+			  .append("text")
+				.attr("y", 6)
+				.attr("dy", "-2em")
+				.style("text-anchor", "end")
+				.style("text-anchor", "end")
+				.text("AVG RUNS PER OVER");
+				
+			bars = svg.selectAll(".bar").data(data).enter();	
+			bars.append("rect")
+			  .attr("class", "bar1")
+			  .attr("x", function(d) { return x(d.team); })
+			  .attr("width", x.rangeBand()/2)
+			  .attr("y", function(d) { return y0(d.runs_super_over); })
+			  .attr("height", function(d,i,j) { return height - y0(d.runs_super_over); }) 
+			  .attr("fill", "#994499")				  
+			  .on("mouseover", function(d,i) {
+					tooltip_r.style("opacity", 1)
+						   .style("left",(d3.event.pageX)+"px")
+						   .style("top",(d3.event.pageY)+"px")
+						   .html("Team Name:" + d.team + "\n" + "Runs Per Super Over:"+d.runs_super_over);
+				})
+			   .on("mouseout", function() { tooltip_r.style("opacity", 0) });
+
+			bars.append("rect")
+			  .attr("class", "bar2")
+			  .attr("x", function(d) { return x(d.team); })
+			  .attr("width", x.rangeBand() / 2)
+			  .attr("y", function(d) { return y0(d.runs_normal_over); })
+			  .attr("height", function(d,i,j) { return height - y0(d.runs_normal_over); })
+			  .attr("fill", color_rpn)				  
+			  .on("mouseover", function(d,i) {
+					tooltip_r.style("opacity", 1)
+						   .style("left",(d3.event.pageX)+"px")
+						   .style("top",(d3.event.pageY)+"px")
+						   .html("Team Name:" + d.team + "\n" + "Runs Per Normal Over:"+d.runs_normal_over);
+				})
+				.on("mouseout", function() { tooltip_r.style("opacity", 0) });
+					
+			function type(d) {
+			  d.runs_super_over = +d.runs_super_over;
+			  return d;
+			}		
+
+			<!--Create the legend -->
+			var colors = d3.scale.ordinal()
+				.range([color_rps, color_rpn]);		
+			
+			var legend = svg.selectAll(".legend")
+			.data(["Avg Runs Per Super Over", "Avg Runs Per Normal Over"])
+			.enter().append("g")
+			.attr("class", "legend")
+			.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });		
+			
+			legend.append("rect")
+			.attr("x", width - 5)
+			.attr("width", 18)
+			.attr("height", 18)
+			.style("fill", colors);
+			
+			legend.append("text")
+			.attr("x", width - 10)
+			.attr("y", 9)
+			.attr("dy", ".35em")
+			.style("text-anchor", "end")
+			.text(function(d) { return d; });
+		}		
 	} 
 
 </script>
