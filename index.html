@@ -73,7 +73,7 @@ form {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   position: absolute;
   left: 300px;
-  top: 180px;
+  top: 160px;
 }
 
 .button {
@@ -712,10 +712,14 @@ form {
 			matches_bar_chart(data_top_matches);		
 		}
 		function matches_bar_chart(data) {
-				
-			var margin = {top: 30, right: 80, bottom: 80, left: 80},
+			
+			console.log("matches check radio..");	
+			console.log(r_top);
+			
+			var margin = {top: 65, right: 80, bottom: 80, left: 50},
 				width = 960 - margin.left - margin.right,
 				height = 500 - margin.top - margin.bottom;
+			
 			var x = d3.scale.ordinal()
 				.rangeRoundBands([0, width], .1);
 			var y0 = d3.scale.linear().domain([300, 1100]).range([height, 0]);
@@ -732,11 +736,12 @@ form {
 			var svg = d3.select("body").append("svg")
 				.attr("width", width + margin.left + margin.right)
 				.attr("height", height + margin.top + margin.bottom)
-			  .append("g")
+				.append("g")
 				.attr("class", "graph")
-				.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 		
 			x.domain(data.map(function(d) { return d.team; }));
+			console.log('matches x var');
 			y0.domain([0, d3.max(data, function(d) { return d.played; })]);
 			
 			svg.append("g")
@@ -751,14 +756,14 @@ form {
 			  .append("text")
 				.attr("y", 6)
 				.attr("dy", "-2em")
-				.style("text-anchor", "end")
-				.style("text-anchor", "end")
+				.style("text-anchor", "middle")
+				.style("text-anchor", "middle")
 				.text("MATCHES");
 		
 			bars = svg.selectAll(".bar").data(data).enter();	
 			bars.append("rect")
 			  .attr("class", "bar1")
-			  .attr("x", function(d) { return x(d.team); })
+			  .attr("x", function(d) { return (!r_top) ? x(d.team)+15 : x(d.team); })
 			  .attr("width", x.rangeBand()/2)
 			  .attr("y", function(d) { return y0(d.played); })
 			  .attr("height", function(d,i,j) { return height - y0(d.played); })
@@ -773,8 +778,8 @@ form {
 
 			bars.append("rect")
 			  .attr("class", "bar2")
-			  .attr("x", function(d) { return x(d.team); })
-			  .attr("width", x.rangeBand() / 2)
+			  .attr("x", function(d) { return (!r_top) ? x(d.team)+15 : x(d.team); })
+			  .attr("width", x.rangeBand()/2)
 			  .attr("y", function(d) { return y0(d.won); })
 			  .attr("height", function(d,i,j) { return height - y0(d.won); })			  
 			  .attr("fill", color_mw)			  			  
@@ -786,12 +791,7 @@ form {
 				})
 				.on("mouseout", function() { tooltip.style("opacity", 0) });
 				
-			console.log(bars);		
-			// Create line above the rect
-			var XLine = d3.scale.ordinal()
-            .rangeRoundPoints([0, width], .1);
-			
-					
+			console.log(bars);
 			
 			<!--Create the legend -->
 			var colors = d3.scale.ordinal()
@@ -806,6 +806,7 @@ form {
 			
 			legend.append("rect")
 			.attr("x", width - 5)
+			.attr("y", height+40)
 			.attr("width", 18)
 			.attr("height", 18)
 			.style("fill", colors);
@@ -814,7 +815,7 @@ form {
 			
 			legend.append("text")
 			.attr("x", width - 10)
-			.attr("y", 9)
+			.attr("y", height + 50)
 			.attr("dy", ".35em")
 			.style("text-anchor", "end")
 			.text(function(d) { return d; });		
@@ -954,6 +955,7 @@ form {
 			
 			legend.append("rect")
 			.attr("x", width - 5)
+			.attr("y", height+40)
 			.attr("width", 18)
 			.attr("height", 18)
 			.style("fill", colors);
@@ -962,7 +964,7 @@ form {
 			
 			legend.append("text")
 			.attr("x", width - 10)
-			.attr("y", 9)
+			.attr("y", height + 50)
 			.attr("dy", ".35em")
 			.style("text-anchor", "end")
 			.text(function(d) { return d; });		
@@ -1011,7 +1013,7 @@ form {
 		
 		function runs_bar_chart(data) {
 		
-			var margin = {top: 60, right: 80, bottom: 80, left: 110},
+			var margin = {top: 60, right: 80, bottom: 80, left: 60},
 				width = 960 - margin.left - margin.right,
 				height = 500 - margin.top - margin.bottom;
 			var x = d3.scale.ordinal()
@@ -1049,14 +1051,14 @@ form {
 			  .append("text")
 				.attr("y", 6)
 				.attr("dy", "-2em")
-				.style("text-anchor", "end")
-				.style("text-anchor", "end")
+				.style("text-anchor", "middle")
+				.style("text-anchor", "middle")
 				.text("AVG RUNS PER OVER");
 				
 			bars = svg.selectAll(".bar").data(data).enter();	
 			bars.append("rect")
 			  .attr("class", "bar1")
-			  .attr("x", function(d) { return x(d.team); })
+			  .attr("x", function(d) { return (!r_top) ? x(d.team)+15 : x(d.team)+50; })
 			  .attr("width", x.rangeBand()/2)
 			  .attr("y", function(d) { return y0(d.runs_super_over); })
 			  .attr("height", function(d,i,j) { return height - y0(d.runs_super_over); }) 
@@ -1071,7 +1073,7 @@ form {
 
 			bars.append("rect")
 			  .attr("class", "bar2")
-			  .attr("x", function(d) { return x(d.team); })
+			  .attr("x", function(d) { return (!r_top) ? x(d.team)+15 : x(d.team)+50; })
 			  .attr("width", x.rangeBand() / 2)
 			  .attr("y", function(d) { return y0(d.runs_normal_over); })
 			  .attr("height", function(d,i,j) { return height - y0(d.runs_normal_over); })
@@ -1100,14 +1102,15 @@ form {
 			.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });		
 			
 			legend.append("rect")
-			.attr("x", width - 5)
+			.attr("x", width)
+			.attr("y", height+40)
 			.attr("width", 18)
 			.attr("height", 18)
 			.style("fill", colors);
 			
 			legend.append("text")
 			.attr("x", width - 10)
-			.attr("y", 9)
+			.attr("y", height + 50)
 			.attr("dy", ".35em")
 			.style("text-anchor", "end")
 			.text(function(d) { return d; });
