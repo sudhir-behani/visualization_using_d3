@@ -13,6 +13,9 @@
 body {
   font: 10px sans-serif;
 }
+.loading {
+	background: url('images/ico_loading.gif') no-repeat center center;
+}
 .y.axisRight text {
     fill: orange;
 }
@@ -73,7 +76,7 @@ form {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   position: absolute;
   left: 300px;
-  top: 160px;
+  top: 220px;
 }
 
 .button {
@@ -110,9 +113,13 @@ form {
 <body>
 	<script>
 	<!--Load All dataset -->
-	
 	</script>
-	<div class="slides" id="first_slide" hidden>
+	
+	<div class="loading" id="init_slide" style="background-color:black">
+		<img src="images/ico_loading.gif" style="border: none; box-shadow:none; position:absolute; top:300px; left:720px;">	
+	</div>
+	
+	<div class="slides" id="first_slide" data-center="opacity: 1" hidden>
 		<section>
 			<center>
 				<h1>
@@ -146,13 +153,13 @@ form {
 		</section>
 	</div>
 	
-	<div class="slides" id="second_slide" hidden>	
+	<div class="slides" id="second_slide" hidden>
 		<section>
 			<h1>
 				The Narative Visualization
 			</h1>
 			<p>
-				This project has used hybrid struture visualization with interactive slideshows to narrate the story of IPL Tournament dataset.     
+				This project focuses on hybrid struture visualization with interactive slideshows to narrate the story of IPL Tournament dataset.     
 			</p>			
 			<h1>
 				Elements of Narrative Visuals 
@@ -161,14 +168,15 @@ form {
 				<ol>
 					<li class="fragment" data-fragment-index="1"><strong>Scenes:</strong></li>
 					<p class="fragment" data-fragment-index="2">The <strong>scenes</strong> in each page that make up the presentation. These scenes contains text description about the visualization and charts.
-						They can be controlled using arrow, pageup and pagedown keys which enable users to move from scene to scene.
+						They can be controlled using arrow keys keys which enable users to move from scene to scene. Arrows image/s are clearly visible in each scene so that user knows which key to press. 
 					</p>
 					<li class="fragment" data-fragment-index="3"><strong>Annotations:</strong></li>
-					<p class="fragment" data-fragment-index="4">The <strong>tooltips</strong>, <strong>labels</strong> & <strong>legends</strong>; that display match statistics.</p>
+					<p class="fragment" data-fragment-index="4">The <strong>tooltips</strong> and <strong>chart annotations</strong> that highlight important points in the charts. <strong>Legends</strong> describes the meaning of colors used in each charts.</p>
 					<li class="fragment" data-fragment-index="5"><strong>Parameters:</strong></li>
-					<p class="fragment" data-fragment-index="6">The parameters of this interective presentation are <strong>matches played and won, win by runs and wickets and avg runs per over in normal and super overs.</strong></p>
+					<p class="fragment" data-fragment-index="6">The parameters of this interective presentation are <strong>matches played and won, win by runs and wickets</strong> and <strong>avg runs per over in normal and super overs.</strong></p>
 					<li class="fragment" data-fragment-index="7"><strong>Triggers:</strong></li>
-					<p class="fragment" data-fragment-index="8"><strong>Arrows</strong> and <strong>buttons</strong> are used to trigger updates in visulization.</p>
+					<p class="fragment" data-fragment-index="8"><strong>Arrows</strong> and <strong>button</strong> are used to trigger updates in visulization. <strong>Arrows</strong> control allows users to move from one scene to another.<br>Button in the first scene allows user to get details about the elements of the narrative visualization. <br><strong>Radio buttons</strong> in the scene zooms to provide deeper look into the the top teams.</p>
+					                       
 				</ol>
 			</small>							
 			<center>
@@ -185,48 +193,53 @@ form {
 		THE DATASET
 		</h1>
 		<p>
-		Dataset includes two csv files: matches and deliveries. 
+		Dataset includes two csv files: matches and deliveries. There were 636 matches played including all the seasons.
 		</p>
-		
 		<p>
 		<strong>First</strong> file consists of match details for each season (season is represented as year of hosting). Mentioned details comprises of city where the match is played, 
-		names of the participating teams - team1, team2, toss winning team, result of the match whether it is a tie/normal/no result 
-		(no result can be a case when a match is abandoned due to weather conditions), winning team and losing team of the match. 		
-		Winning teams can win a match based on win by wickets and win by runs. Other details like man of the match, match umpires/referees are also included. 
+		names of the participating teams - <strong>team1, team2,</strong> toss winning team, result of the match whether it is a tie/normal/no result 
+		(no result can be a case when a match is abandoned due to weather conditions), <strong>winning team and losing team of the match.</strong> 
+		<strong>Winning teams</strong> can win a match based on <strong>win by wickets and win by runs.</strong> 
+		If team batting first wins the match they are said to be winning by runs else when team batting second wins they win by wickets.
 		</p>
 		
 		<p>
-		<strong>Second</strong> file consists of deliveries which contains number of information for each match played. Inning details for each match, team batting first has innings as 1 and other team batting second has innings as 2. Batting team, bowling team names and this gets revered for innings 2, as team batting first will bowl and team bowling will be batting. So for each match there are 2 innings and each team will bat and bowl once. As this is a twenty over game over column contains each over number and ball column contains information about each bowl per over. Information like batsman, non_striker (batsman) and bowler are also added. Is_super_over columns displays 1 when it’s a super over. For each match, there will be 5 super overs where there are restrictions for placing a fielders inside the circle so that batsman get the liberty to hit long shots. Other details like wide_runs, bye_runs, legbye_runs, noball_runs, penalty_runs, batsman_runs, extra_runs, total_runs these are related to extra runs in a bowl are included. Additional information like players_dismissed, dismissal_kind and fielder are related to which player was dismissed and how he was dismissed. 
+		<strong>Second</strong> file consists of deliveries which contains detailed information about each match. Inning details for each match, team batting first has innings as 1 and other team batting second has innings as 2. 
+		Batting team, bowling team names and this gets revered for innings 2, as team batting first will bowl and team bowling will be batting. So for each match there are 2 innings and each team will bat and bowl once. 
+		As this is a twenty over game over column contains each over number and ball column contains information about each bowl per over. Information like batsman, non_striker (batsman) and bowler are also added. 
+		Is_super_over columns displays 1 when it’s a super over. For each match, there will be <strong>5 super overs</strong> where there are restrictions for placing a fielders inside the circle so that batsman get the liberty to hit long shots. 
 		</p>
 		
 		<a href="https://www.kaggle.com/manasgarg/ipl">Link to Dataset Source</a>
 		
 		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
-			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none; position:absolute; top:510px; left:720px; width:80px;" height="60" width="60">
+			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none; position:absolute; top:630px; left:1400px; width:80px;" height="60" width="60">
 		</div>					
 		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
-			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:560px; left:720px; width:80px;" height="60" width="60">
+			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:680px; left:1400px; width:80px;" height="60" width="60">
 		</div>		
 	</center>	
 	</div>
 	
 	<div class="slides" id="fourth_slide" hidden>
-	<h1>
+	<h1 style="font-size:25px">
 	Matches Played vs Matches Won
 	</h1>
-	<h3>
-	This chart shows a comparison between total matches played and matches won by each team as a stacked bar chart.
+	<h3 style="font-size:13px">
+	This chart shows a comparison between total matches played and matches won by each team as a sude by side bar chart.
 	Team name is nominal variable and plotted in X axis, Y axis is discrete value as total matches played and won for each team is discrete.
-	A stacked bar chart was chosen as it’s a plot between nominal and discrete and matches won is a subset of matches played with different colors 
-	for total matches and matches won for effective comparison. 
+	A side by side bar chart was chosen as it’s a plot between nominal and discrete with different colors for total matches and matches won for effective comparison. 
 	</h3>
-	<h3>
+	<h3 style="font-size:13px">
 	In the data source matches.csv team1 and team2 names were shown separately to present the match between two teams. 
-	Combining team1 and team2 which contains all the team names for each match that helped in calculating total matches played by each team.
+	Combining team1 and team2 contains all the team names for each match that allowed to calculate total matches played by each team.
 	</h3>
-	<h3>
-	Plot is sorted in descending order of matches won.
+	<h3 style="font-size:13px">
+	Chart shows 3 category of teams based on number of matches played: 1) High Experience Teams  2) Mid Experience Teams  3) Low Experience Teams 
 	</h3>		
+	<h3 style="font-size:13px">
+	Chart is sorted in descending order of matches won. This is to showcase that top winning teams have high experience.
+	</h3>
 	<br><br>
 	<form>
 	  <label><input type="radio" name="mode" id="radio_matches" value="matches_all" checked>All Teams</label>
@@ -235,26 +248,26 @@ form {
 	<br>
 	<center>
 		<div class="fragment" data-fragment-index="9" style="cursor: pointer;" 	>
-			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none; position:absolute; top:630px; left:500px; width:80px;" height="60" width="60">
+			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none; position:absolute; top:630px; left:1400px; width:80px;" height="60" width="60">
 		</div>						
 		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
-			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:680px; left:500px; width:80px;" height="60" width="60">
+			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:680px; left:1400px; width:80px;" height="60" width="60">
 		</div>	
 	</center>	
 	</div>
 	
 	<div class="slides" id="fifth_slide" hidden>
-	<h1>
+	<h1 style="font-size:25px">
 	WinByRuns vs WinByWickets
 	</h1>
-	<h3>
+	<h3 style="font-size:15px">
 	In this plot we compare all wining team's win by runs and win by wickets count. Team name is a nominal variable as it contains names and plotted on X axis, 
 	Y axis has the count of WinByRuns and WinByWickets. A side by side bar chart was chosen to clearly showcase the win by runs and win by wickets for each winning team. 
 	</h3>
-	<h3>
-	Count of win by runs and wickets were evaluated by a calculation: group by each winning team and counting when win by run or wickets is more than zero.
+	<h3 style="font-size:15px">
+	This plot shows that top teams with win by wickets are also good in win by runs. In simple terms, this mean these that top teams can perform good while batting first or second.
 	</h3>
-	<h3>
+	<h3 style="font-size:15px">
 	Plot is sorted in descending order of win by wickets.
 	</h3>	
 	<br><br>
@@ -265,26 +278,26 @@ form {
 	<br>	
 	<center>
 		<div class="fragment" data-fragment-index="9" style="cursor: pointer; ">
-			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none; position:absolute; top:630px; left:500px; width:80px;" height="60" width="60">
+			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none; position:absolute; top:630px; left:1400px; width:80px;" height="60" width="60">
 		</div>						
 		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
-			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:680px; left:500px; width:80px;" height="60" width="60">
+			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:680px; left:1400px; width:80px;" height="60" width="60">
 		</div>	
 	</center>	
 	</div>
 
 	<div class="slides" id="sixth_slide" hidden>
-	<h1>
+	<h1 style="font-size:25px">
 	Runs scored in super over vs normal overs
 	</h1>
-	<h3>
+	<h3 style="font-size:15px">
 	This is a plot for winning teams with runs scored in each super over and each normal overs. 
-	Winner is a nominal variable and avg runs scored in super over and avg runs in normal over are continuous variables. 
+	Winner is a nominal variable and avg runs scored in super overs and in normal overs are continuous variables.
 	</h3>
-	<h3>
-	As it’s a plot between nominal and continuous so a stacked bar chart was chosen.	
+	<h3 style="font-size:15px">
+	As it’s a plot between nominal and continuous, and  so a stacked bar chart was chosen.
 	</h3>
-	<h3>
+	<h3 style="font-size:15px">
 	Plot is sorted in descending order of runs scored in super overs by each team.
 	</h3>
 	<br><br>
@@ -295,10 +308,10 @@ form {
 	<br>		
 	<center>
 		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
-			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none; position:absolute; top:630px; left:500px; width:80px;" height="60" width="60">
+			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none; position:absolute; top:630px; left:1400px; width:80px;" height="60" width="60">
 		</div>						
 		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
-			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:680px; left:500px; width:80px;" height="60" width="60">
+			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:680px; left:1400px; width:80px;" height="60" width="60">
 		</div>	
 	</center>	
 	</div>
@@ -347,10 +360,10 @@ form {
 				Thank You!!
 			</h1>	
 		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
-			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none; position:absolute; top:600px; left:720px; width:80px;" height="60" width="60">
+			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none; position:absolute; top:630px; left:1400px; width:80px;" height="60" width="60">
 		</div>					
 		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
-			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:650px; left:720px; width:80px;" height="60" width="60">
+			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:680px; left:1400px; width:80px;" height="60" width="60">
 		</div>			
 		</center>
 	</div>	
@@ -370,7 +383,9 @@ form {
 		<button class="button" onclick="runs_per_over()" >RunsPerOver</button>
 	</div>
 	<script src="https://d3js.org/d3.v3.min.js"></script>
-	<script src="keypress.js"></script>
+	<script src="js/keypress.js"></script>
+	<script src="js/d3-ring-note.js"></script>
+</body>
 <script>
 	<!-- Dataset global variables -->
 	var data_matches = 0;
@@ -392,9 +407,15 @@ form {
 	var color_wbw = "#69c242";
 	
 	// runs per over
-	var color_rps = "#994499";				
-	var color_rpn = "#ffcc00";
+	var color_rps = "#994499";
+	var color_rpn = "#ffcc00";				
 
+	// count_timer_flag
+	var timer_flag = 0;
+	function settimer() {
+		setTimeout(function(){ init();}, 1000);		
+	}
+	settimer();	
 	// clear the screen
 	function clear_screen() {
 	
@@ -410,7 +431,7 @@ form {
 	clear_screen();
 	
     <!--Function to Load the data -->
-		function load_data_first_page() {
+	function load_data_first_page() {
 		<!--Data Matches -->
 		console.log('Loading matches data..')
 		d3.tsv("src/matche_play_won.tsv", type_matches, function(error, data) {
@@ -432,11 +453,12 @@ form {
 		  return d;
 		}
 	}
+	
 	function load_data() {
 		
 		<!--Data Win By -->
 		console.log('Loading wins_by data..')		
-		d3.tsv("src/win_by.tsv", type_winby, function(error, data) {
+		d3.tsv("src/won_winby.tsv", type_winby, function(error, data) {
 			data_win_by = data;
 			console.log(data_win_by);
 		});
@@ -524,6 +546,11 @@ form {
 		// load data for first slide
 		load_data_first_page();		
 		// initialize the first slide
+		
+		// hide loading slide
+		var div_elem = document.getElementById("init_slide");
+		div_elem.style.display = "none";
+		
 		var div_elem = document.getElementById("first_slide");
 		div_elem.style.display = "block";
 		div_elem.top = "50%";
@@ -536,9 +563,9 @@ form {
 		//var foot = document.getElementById("main_footer");
 		//foot.style.display = "block";		
 	}
-	init();
+	//init();
 	
-	// switch to page
+	// switch to page based on arraow key pressed
 	function switch_page(page) {
 		switch(page) {
 			case 1:
@@ -596,7 +623,7 @@ form {
 		}				
 	}
 	
-	// controls the pagination 	
+	// controls the site pagination 	
 	var page=1;	
 	var rl_page = 0;
 	function pageup() {
@@ -667,12 +694,66 @@ form {
 		.on('←', pageleft())
 		.on('↑', pageup())
 		.on('↓', pagedown())
-		.on('pgup', pageup())
-		.on('pgdown', pagedown())
+		//.on('pgup', pageup())
+		//.on('pgdown', pagedown())
 		);	
 	}
 	controls();
+	
+	<!--ANNOTATE -->
+	function chart_annotation(svg, anotate_box, ano_text, text_coord, vertical_line, vert_line){
+	
+		var ano_rect = svg.selectAll(".bar").data(["1"]).enter();				
+		ano_rect.append("rect")
+			.attr("class", "ano_rect")
+			.attr("x", anotate_box['x'])
+			.attr("y", anotate_box['y'])
+			.attr("width", anotate_box['w'])
+			.attr("height", anotate_box['h'])
+			.style("stroke","black")
+			.style("stroke-width", 2)
+			.style("stroke-dasharray", "5, 5")				
+			.style("fill-opacity", "0");
+			
+		
+		var ano_rect = svg.selectAll(".line").data([ano_text['text']]).enter();				
+		   
+		ano_rect.append("line")
+			.attr("class", "ano_line")
+			.attr("x1", text_coord['x1'])
+			.attr("y1", text_coord['y1'])
+			.attr("x2", text_coord['x2'])				
+			.attr("y2", text_coord['y2'])
+			.attr("fill", "none")
+			.attr("stroke", "black")
+			.attr("stroke-linejoin", "round")
+			.attr("stroke-linecap", "round")
+			.attr("stroke-width", 1.5);  
 
+		ano_rect.append("text")		
+			.attr("x", ano_text['x'])
+			.attr("y", ano_text['y'])
+			.attr("dy", ".35em")
+			.style("text-anchor", "middle")
+			.style("font", "16px times")
+			.text(function(d) { return d; });
+
+		if (vertical_line === 1) {
+		
+			ano_rect.append("line")
+				.attr("class", "ano_line")
+				.attr("x1", vert_line['x1'])
+				.attr("y1", vert_line['y1'])
+				.attr("x2", vert_line['x2'])				
+				.attr("y2", vert_line['y2'])
+				.attr("fill", "none")
+				.attr("stroke", "black")
+				.attr("stroke-linejoin", "round")
+				.attr("stroke-linecap", "round")
+				.attr("stroke-width", 1.5);  
+		}
+	}
+	
 	<!--Scene1 -->
 	function matches_played_won(){
 	
@@ -711,15 +792,12 @@ form {
 			console.log('matches radio changed inside function top ..');				
 			matches_bar_chart(data_top_matches);		
 		}
+		
 		function matches_bar_chart(data) {
-			
-			console.log("matches check radio..");	
-			console.log(r_top);
-			
-			var margin = {top: 65, right: 80, bottom: 80, left: 50},
+		
+			var margin = {top: 80, right: 80, bottom: 80, left: 80},
 				width = 960 - margin.left - margin.right,
 				height = 500 - margin.top - margin.bottom;
-			
 			var x = d3.scale.ordinal()
 				.rangeRoundBands([0, width], .1);
 			var y0 = d3.scale.linear().domain([300, 1100]).range([height, 0]);
@@ -736,14 +814,13 @@ form {
 			var svg = d3.select("body").append("svg")
 				.attr("width", width + margin.left + margin.right)
 				.attr("height", height + margin.top + margin.bottom)
-				.append("g")
+			  .append("g")
 				.attr("class", "graph")
 				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-		
-			x.domain(data.map(function(d) { return d.team; }));
-			console.log('matches x var');
-			y0.domain([0, d3.max(data, function(d) { return d.played; })]);
 			
+			x.domain(data.map(function(d) { return d.team; }));
+			y0.domain([0, d3.max(data, function(d) { return d.played; })]);
+	 
 			svg.append("g")
 			  .attr("class", "x axis")
 			  .attr("transform", "translate(0," + height + ")")
@@ -759,37 +836,42 @@ form {
 				.style("text-anchor", "middle")
 				.style("text-anchor", "middle")
 				.text("MATCHES");
-		
+						
 			bars = svg.selectAll(".bar").data(data).enter();	
 			bars.append("rect")
 			  .attr("class", "bar1")
-			  .attr("x", function(d) { return (!r_top) ? x(d.team)+15 : x(d.team); })
+			  .attr("x", function(d) { return x(d.team); })
 			  .attr("width", x.rangeBand()/2)
-			  .attr("y", function(d) { return y0(d.played); })
-			  .attr("height", function(d,i,j) { return height - y0(d.played); })
-			  .attr("fill", color_mp)			  
+			  .attr("y", function(d) { return y0(d.won); })
+			  .attr("height", function(d,i,j) { return height - y0(d.won); })
+			  .attr("fill", color_mw)		
 			  .on("mouseover", function(d,i) {
 					tooltip.style("opacity", 1)
 						   .style("left",(d3.event.pageX)+"px")
 						   .style("top",(d3.event.pageY)+"px")
-						   .html("Team Name:" + d.team + "\n" +"Matches Played:"+d.played);
+						   .html("Team Name:" + d.team + "\n" +"Won:"+d.won);
 				})
 			   .on("mouseout", function() { tooltip.style("opacity", 0) });
 
 			bars.append("rect")
 			  .attr("class", "bar2")
-			  .attr("x", function(d) { return (!r_top) ? x(d.team)+15 : x(d.team); })
-			  .attr("width", x.rangeBand()/2)
-			  .attr("y", function(d) { return y0(d.won); })
-			  .attr("height", function(d,i,j) { return height - y0(d.won); })			  
-			  .attr("fill", color_mw)			  			  
+			  .attr("x", function(d) { return x(d.team) + x.rangeBand()/2; })
+			  .attr("width", x.rangeBand() / 2)
+			  .attr("y", function(d) { return y0(d.played); })
+			  .attr("height", function(d,i,j) { return height - y0(d.played); })
+			  .attr("fill", color_mp)
 			  .on("mouseover", function(d,i) {
 					tooltip.style("opacity", 1)
 						   .style("left",(d3.event.pageX)+"px")
 						   .style("top",(d3.event.pageY)+"px")
-						   .html("Team Name:" + d.team + "\n" +"Matches Won:"+d.won);
+						   .html("Team Name:" + d.team + "\n" +"Played:"+d.played);
 				})
 				.on("mouseout", function() { tooltip.style("opacity", 0) });
+					
+			function type(d) {
+			  d.played = +d.played;
+			  return d;
+			}
 				
 			console.log(bars);
 			
@@ -806,7 +888,7 @@ form {
 			
 			legend.append("rect")
 			.attr("x", width - 5)
-			.attr("y", height+40)
+			.attr("y", height+35)
 			.attr("width", 18)
 			.attr("height", 18)
 			.style("fill", colors);
@@ -815,12 +897,53 @@ form {
 			
 			legend.append("text")
 			.attr("x", width - 10)
-			.attr("y", height + 50)
+			.attr("y", height + 45)
 			.attr("dy", ".35em")
 			.style("text-anchor", "end")
-			.text(function(d) { return d; });		
-		}
-		
+			.text(function(d) { return d; });
+
+			var legend_rect = svg.selectAll(".bar").data(["1"]).enter();				
+			legend_rect.append("rect")
+				.attr("class", "leg_rect")
+				.attr("x", width-150)
+				.attr("y", height+28)
+				.attr("width", 200)
+				.attr("height", 50)
+				.style("stroke","black")
+				.style("stroke-width", 2)
+				.style("fill-opacity", 0.001);		
+
+			var r_all = document.getElementById("radio_matches").checked;
+			var r_top = document.getElementById("radio_matches_top").checked;
+				
+			// annotatation			
+			if (r_all == true) { 
+				text_data = {'text':"High Experience Teams", 'x': 590, 'y': 40};			
+				anotate_box = { 'x' : 20, 'y': 0 , 'w': 420, 'h': 100 };
+				text_coord = { 'x1': 440, 'y1': 40, 'x2': 490, 'y2': 40 };
+				vert_line = {'': 0};
+				chart_annotation(svg, anotate_box, text_data, text_coord, 0, vert_line);	
+				
+				text_data = {'text':"Mid Experience Teams", 'x': 680, 'y': 185};			
+				anotate_box = { 'x' : 440, 'y': 160 , 'w': 130, 'h': 50 };
+				text_coord = { 'x1': 570, 'y1': 185, 'x2': 600, 'y2': 185};
+				vert_line = {'': 0};
+				chart_annotation(svg, anotate_box, text_data, text_coord, 0, vert_line);	
+
+				text_data = {'text':"Low Experience Teams", 'x': 740, 'y': 220};					
+				anotate_box = { 'x' : 580, 'y': 240 , 'w': 230, 'h': 90 };
+				text_coord = { 'x1': 620, 'y1': 220, 'x2': 660, 'y2': 220};
+				vert_line = { 'x1': 620, 'y1': 240, 'x2': 620, 'y2': 220};
+				chart_annotation(svg, anotate_box, text_data, text_coord, 1, vert_line);	
+			}
+			else{ 
+				text_data = {'text':"CSK : Top ranked team with relatively lesser experience", 'x': 570, 'y': 0};			
+				anotate_box = { 'x' : 230, 'y': 0 , 'w': 100, 'h': 100 };
+				text_coord = { 'x1': 320, 'y1': 0, 'x2': 370, 'y2': 0 };
+				vert_line = {'': 0};
+				chart_annotation(svg, anotate_box, text_data, text_coord, 0, vert_line);	
+			}	
+		}			
 	}
 
 	<!--Scene2 -->
@@ -865,7 +988,7 @@ form {
 		
 		function winby_bar_chart(data) {
 		
-			var margin = {top: 80, right: 80, bottom: 80, left: 80},
+			var margin = {top: 60, right: 80, bottom: 80, left: 60},
 				width = 960 - margin.left - margin.right,
 				height = 500 - margin.top - margin.bottom;
 			var x = d3.scale.ordinal()
@@ -884,7 +1007,7 @@ form {
 			var svg = d3.select("body").append("svg")
 				.attr("width", width + margin.left + margin.right)
 				.attr("height", height + margin.top + margin.bottom)
-			  .append("g")
+				.append("g")
 				.attr("class", "graph")
 				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 			
@@ -903,18 +1026,18 @@ form {
 			  .append("text")
 				.attr("y", 6)
 				.attr("dy", "-2em")
-				.style("text-anchor", "end")
-				.style("text-anchor", "end")
+				.style("text-anchor", "middle")
+				.style("text-anchor", "middle")
 				.text("WIN BY");
 						
-			bars = svg.selectAll(".bar").data(data).enter();	
+			bars = svg.selectAll(".bar").data(data).enter();
 			bars.append("rect")
 			  .attr("class", "bar1")
 			  .attr("x", function(d) { return x(d.team); })
 			  .attr("width", x.rangeBand()/2)
 			  .attr("y", function(d) { return y0(d.win_by_wickets); })
 			  .attr("height", function(d,i,j) { return height - y0(d.win_by_wickets); })
-			  .attr("fill", color_wbr)		
+			  .attr("fill", color_wbr)
 			  .on("mouseover", function(d,i) {
 					tooltip.style("opacity", 1)
 						   .style("left",(d3.event.pageX)+"px")
@@ -925,8 +1048,8 @@ form {
 
 			bars.append("rect")
 			  .attr("class", "bar2")
-			  .attr("x", function(d) { return x(d.team) + x.rangeBand()/2; })
-			  .attr("width", x.rangeBand() / 2)
+			  .attr("x", function(d) { return x(d.team) + x.rangeBand()/4; })
+			  .attr("width", x.rangeBand() / 4)
 			  .attr("y", function(d) { return y0(d.win_by_runs); })
 			  .attr("height", function(d,i,j) { return height - y0(d.win_by_runs); })
 			  .attr("fill", color_wbw)
@@ -937,9 +1060,25 @@ form {
 						   .html("Team Name:" + d.team + "\n" +"Win by wickets:"+d.win_by_runs);
 				})
 				.on("mouseout", function() { tooltip.style("opacity", 0) });
-					
+				
+			bars.append("rect")
+			  .attr("class", "bar3")
+			  .attr("x", function(d) { return x(d.team) + x.rangeBand()/4 + x.rangeBand()/4; })
+			  .attr("width", x.rangeBand()/4)
+			  .attr("y", function(d) { return y0(d.won); })
+			  .attr("height", function(d,i,j) { return height - y0(d.won); })
+			  .attr("fill", color_mp)
+			  .on("mouseover", function(d,i) {
+					tooltip.style("opacity", 1)
+						   .style("left",(d3.event.pageX)+"px")
+						   .style("top",(d3.event.pageY)+"px")
+						   .html("Team Name:" + d.team + "\n" +"Won:"+d.won);
+				})
+			   .on("mouseout", function() { tooltip.style("opacity", 0) });
+				
+				
 			function type(d) {
-			  d.win_by_wickets = +d.win_by_wickets;
+			  d.won = +d.won;
 			  return d;
 			}
 
@@ -955,7 +1094,7 @@ form {
 			
 			legend.append("rect")
 			.attr("x", width - 5)
-			.attr("y", height+40)
+			.attr("y", height+35)
 			.attr("width", 18)
 			.attr("height", 18)
 			.style("fill", colors);
@@ -964,10 +1103,22 @@ form {
 			
 			legend.append("text")
 			.attr("x", width - 10)
-			.attr("y", height + 50)
+			.attr("y", height + 45)
 			.attr("dy", ".35em")
 			.style("text-anchor", "end")
-			.text(function(d) { return d; });		
+			.text(function(d) { return d; });	
+
+			var legend_rect = svg.selectAll(".bar").data(["1"]).enter();				
+			legend_rect.append("rect")
+				.attr("class", "leg_rect")
+				.attr("x", width-150)
+				.attr("y", height+28)
+				.attr("width", 200)
+				.attr("height", 50)
+				.style("stroke","black")
+				.style("stroke-width", 2)
+				.style("fill-opacity", 0.001);		
+							
 		}
 	}
 	
@@ -1058,11 +1209,11 @@ form {
 			bars = svg.selectAll(".bar").data(data).enter();	
 			bars.append("rect")
 			  .attr("class", "bar1")
-			  .attr("x", function(d) { return (!r_top) ? x(d.team)+15 : x(d.team)+50; })
+			  .attr("x", function(d) { return x(d.team); })
 			  .attr("width", x.rangeBand()/2)
 			  .attr("y", function(d) { return y0(d.runs_super_over); })
 			  .attr("height", function(d,i,j) { return height - y0(d.runs_super_over); }) 
-			  .attr("fill", "#994499")				  
+			  .attr("fill", color_rps)				  
 			  .on("mouseover", function(d,i) {
 					tooltip_r.style("opacity", 1)
 						   .style("left",(d3.event.pageX)+"px")
@@ -1073,7 +1224,7 @@ form {
 
 			bars.append("rect")
 			  .attr("class", "bar2")
-			  .attr("x", function(d) { return (!r_top) ? x(d.team)+15 : x(d.team)+50; })
+			  .attr("x", function(d) { return x(d.team) + x.rangeBand()/2; })
 			  .attr("width", x.rangeBand() / 2)
 			  .attr("y", function(d) { return y0(d.runs_normal_over); })
 			  .attr("height", function(d,i,j) { return height - y0(d.runs_normal_over); })
@@ -1094,7 +1245,10 @@ form {
 			<!--Create the legend -->
 			var colors = d3.scale.ordinal()
 				.range([color_rps, color_rpn]);		
-			
+
+			console.log('before legend rect');
+			console.log(data);
+
 			var legend = svg.selectAll(".legend")
 			.data(["Avg Runs Per Super Over", "Avg Runs Per Normal Over"])
 			.enter().append("g")
@@ -1103,17 +1257,32 @@ form {
 			
 			legend.append("rect")
 			.attr("x", width)
-			.attr("y", height+40)
+			.attr("y", height+35)
 			.attr("width", 18)
 			.attr("height", 18)
 			.style("fill", colors);
 			
 			legend.append("text")
 			.attr("x", width - 10)
-			.attr("y", height + 50)
+			.attr("y", height + 45)
 			.attr("dy", ".35em")
 			.style("text-anchor", "end")
 			.text(function(d) { return d; });
+
+			console.log('new legend rect');
+			console.log(data);
+			
+			var legend_rect = svg.selectAll(".bar").data(["1"]).enter();				
+			legend_rect.append("rect")
+				.attr("class", "leg_rect")
+				.attr("x", width-150)
+				.attr("y", height+28)
+				.attr("width", 200)
+				.attr("height", 50)
+				.style("stroke","black")
+				.style("stroke-width", 2)
+				.style("fill-opacity", 0.001);		
+				
 		}		
 	} 
 
