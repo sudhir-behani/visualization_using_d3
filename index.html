@@ -311,18 +311,25 @@ form {
 	</div>
 
 	<div class="slides" id="sixth_slide" hidden>
+		<div style="position: absolute; top: 220px; left: 500px;">
+		  <input type="checkbox" id="check_runs_ano_all" value="runs_check" checked/>
+		  <label for="option position:"> <span></span>Show All Annotations</label>
+		</div>	
 	<h1 style="font-size:25px">
 	Runs scored in super over vs normal overs
 	</h1>
-	<h3 style="font-size:15px">
+	<h3 style="font-size:13px">
 	This is a plot for winning teams with runs scored in each super over and each normal overs. 
 	Winner is a nominal variable and avg runs scored in super overs and in normal overs are continuous variables.
 	</h3>
-	<h3 style="font-size:15px">
-	As it’s a plot between nominal and continuous, and  so a stacked bar chart was chosen.
+	<h3 style="font-size:13px">
+	As it’s a plot between nominal and continuous, and so a side by side bar chart was selected. This chart will help in comparing avg runs per over in super and normal overs.
 	</h3>
-	<h3 style="font-size:15px">
-	Plot is sorted in descending order of runs scored in super overs by each team.
+	<h3 style="font-size:13px">
+	High experience teams have better avg runs per over in normal overs than other teams. CSK is an exception amongst high experience teams with lower avg runs per over in super overs but high avg runs per over in normal over runs. SH is an exception in mid experience teams with low avg runs per over in normal overs but high runs in super overs.	 
+	</h3>
+	<h3 style="font-size:13px">
+	Plot is sorted in descending order of avg runs scored in normal overs and it mostly seperates high, mid and low experience teams.
 	</h3>
 	<br><br>
 	<form>
@@ -438,7 +445,7 @@ form {
 	function settimer() {
 		setTimeout(function(){ init();}, 1000);		
 	}
-	settimer();	
+	settimer();
 	// clear the screen
 	function clear_screen() {
 	
@@ -926,7 +933,7 @@ form {
 			.style("text-anchor", "end")
 			.text(function(d) { return d; });
 
-			var legend_rect = svg.selectAll(".bar").data(["1"]).enter();				
+			var legend_rect = svg.selectAll(".bar").data(["1"]).enter();
 			legend_rect.append("rect")
 				.attr("class", "leg_rect")
 				.attr("x", width-150)
@@ -955,7 +962,7 @@ form {
 				chart_annotation(svg, anotate_box, text_data, st_line, 0, vert_line);	
 
 				text_data = {'text':"Low Experience Teams", 'x': 740, 'y': 270, 'color': 'black'};					
-				anotate_box = { 'x' : 580, 'y': 290 , 'w': 220, 'h': 110 };
+				anotate_box = { 'x' : 555	, 'y': 290 , 'w': 250, 'h': 90 };
 				st_line = { 'x1': 620, 'y1': 270, 'x2': 660, 'y2': 270};
 				vert_line = { 'x1': 620, 'y1': 290, 'x2': 620, 'y2': 270};
 				chart_annotation(svg, anotate_box, text_data, st_line, 1, vert_line);	
@@ -1198,9 +1205,9 @@ form {
 				chart_annotation(svg, anotate_box, text_data, st_line, 1, vert_line);	
 
 				text_data = {'text':"Low Experience Teams good win by runs than wickets", 'x': 940, 'y': 220, 'color': 'black'};
-				anotate_box = { 'x' : 730, 'y': 265 , 'w': 320, 'h': 70};
+				anotate_box = { 'x' : 730, 'y': 275 , 'w': 320, 'h': 100};
 				st_line = { 'x1': 0, 'y1': 0, 'x2': 0, 'y2': 0 };
-				vert_line = { 'x1': 910, 'y1': 265, 'x2': 910, 'y2': 230 };
+				vert_line = { 'x1': 910, 'y1': 275, 'x2': 910, 'y2': 240 };
 				chart_annotation(svg, anotate_box, text_data, st_line, 1, vert_line);
 			
 				<!-- Exception Team with high experience but bad win by wickets -->
@@ -1221,12 +1228,20 @@ form {
 		
 		d3.selectAll("input")
 			.on("change", changed);
-		
+			
 		function changed() {
-		  console.log('runs radio changed');	
-		  console.log(this.value);	
-		  if (this.value === "runs_all") runs_all();
-		  else runs_top();
+		  console.log('runs label changed');	
+		  console.log(this.value);
+		  
+		  if (this.value == "runs_all") runs_all();
+		  else if (this.value == "runs_top" ) runs_top();
+		  else { // checkbox selected 
+				var r_all = document.getElementById("radio_runs").checked;
+				console.log('runs checkbox selected');
+				console.log(r_all);
+				if (r_all == true) runs_all();
+				else runs_top();		
+		  }		  
 		}		
 
 		var r_all = document.getElementById("radio_runs").checked;
@@ -1373,7 +1388,54 @@ form {
 				.style("stroke","black")
 				.style("stroke-width", 2)
 				.style("fill-opacity", 0.001);		
+
+			var r_all = document.getElementById("radio_runs").checked;
+			var checkbox_state = document.getElementById("check_runs_ano_all");
+			
+			// annotatation	
+			if (r_all == true) {
+				if (checkbox_state.checked == true) { 
+				text_data = {'text':"High Experience Teams better avg runs per over in normal overs", 'x': 700, 'y': 0, 'color': 'black'};
+				anotate_box = { 'x' : 10, 'y': 0 , 'w': 420, 'h': 320};
+				st_line = { 'x1': 430, 'y1': 0, 'x2': 490, 'y2': 0};
+				vert_line = {'': 0};
+				chart_annotation(svg, anotate_box, text_data, st_line, 0, vert_line);
 				
+				text_data = {'text':"Mid Experience Teams lower runs in normals overs than high", 'x': 700, 'y': 30, 'color': 'black'};			
+				anotate_box = { 'x' : 440, 'y': 165 , 'w': 60, 'h': 130 };
+				st_line = {'x1': 480, 'y1': 30, 'x2': 500, 'y2': 30};
+				vert_line = { 'x1': 480, 'y1': 165, 'x2': 480, 'y2': 30};
+				chart_annotation(svg, anotate_box, text_data, st_line, 1, vert_line);	
+				
+				text_data = {'text':"experience teams", 'x': 560, 'y': 50, 'color': 'black'};			
+				anotate_box = { 'x' : 0, 'y': 0 , 'w': 0, 'h': 0 };
+				st_line = {'x1': 0, 'y1': 0, 'x2': 0, 'y2': 0};
+				vert_line = { 'x1': 0, 'y1': 0, 'x2': 0, 'y2': 0};
+				chart_annotation(svg, anotate_box, text_data, st_line, 0, vert_line);	
+				
+				//  
+				text_data = {'text':"with SH an exception", 'x': 690, 'y': 50, 'color': 'red'};			
+				anotate_box = { 'x' : 620, 'y': 70 , 'w': 60, 'h': 130 };
+				st_line = {'x1': 0, 'y1': 0, 'x2': 0, 'y2': 0};
+				vert_line = { 'x1': 650, 'y1': 70, 'x2': 650, 'y2': 60};
+				chart_annotation(svg, anotate_box, text_data, st_line, 1, vert_line);	
+				
+				text_data = {'text':"Low Experience Teams", 'x': 800, 'y': 200, 'color': 'black'};
+				anotate_box = { 'x' : 510, 'y': 250 , 'w': 300, 'h': 80};	
+				st_line = { 'x1': 0, 'y1': 0, 'x2': 0, 'y2': 0 };	
+				vert_line = { 'x1': 660, 'y1': 250, 'x2': 770, 'y2': 210 };
+				chart_annotation(svg, anotate_box, text_data, st_line, 1, vert_line);
+				//  lower runs in normal overs		
+			  }
+			}
+			else if (check_runs_ano_all.checked == true) {
+				<!-- Exception Team with high experience but bad win by wickets -->
+				text_data = {'text':"CSK: Top team good avg normal over runs but lower avg super over runs", 'x': 340, 'y': 40, 'color': 'red'};
+				anotate_box = { 'x' : 170, 'y': 80 , 'w': 160, 'h': 220 };
+				st_line = { 'x1': 0, 'y1': 0, 'x2': 0, 'y2': 0 };
+				vert_line = { 'x1': 250, 'y1': 80, 'x2': 250, 'y2': 50 };
+				chart_annotation(svg, anotate_box, text_data, st_line, 1, vert_line);
+			}	
 		}		
 	} 
 
