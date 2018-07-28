@@ -43,8 +43,8 @@ body {
 #tooltip {
     opacity: 0;
     position: absolute;
-    text-align: center;
-    width: 100px; 
+    text-align: left;
+    width: 110px; 
 	height: 30px;
 	padding: 4px;
     background: white;
@@ -52,7 +52,7 @@ body {
     border: 0px;
 }
 
-#tooltip1 {
+#tooltipWinBy {
     opacity: 0;
     position: absolute;
     text-align: left;
@@ -119,11 +119,14 @@ form {
 		<img src="images/ico_loading.gif" style="border: none; box-shadow:none; position:absolute; top:300px; left:720px;">	
 	</div>
 	
-	<div class="slides" id="first_slide" data-center="opacity: 1" hidden>
-		<section>
+	<div class="slides" id="first_slide" data-center="opacity: 1"  hidden>
+		<div class="fragment" data-fragment-index="1">
+			<img src="images/IPL_Logo.png" style="border: none; background:none; box-shadow:none; position:absolute; top:0px; left:0px; width=70% height=70%" >
+		</div>					
+		<section style="position: absolute; top: 100px; left: 80px;">
 			<center>
 				<h1>
-					IPL (INDIAN PREMIER LEAGUE) TOURNAMENT
+					IPL TOURNAMENT
 				</h1>
 				<br>
 				<small>
@@ -146,8 +149,8 @@ form {
 				</small>
 				<br><br>
 				<button class="button" onclick="about_vis()"><strong>About the Visualization</strong></button>
-				<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
-					<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:580px; left:720px; width:80px;" height="60" width="60">
+				<div class="fragment" data-fragment-index="2" style="cursor: pointer;">
+					<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:580px; left:1320px; width:80px;" height="60" width="60">
 				</div>
 			</center>
 		</section>
@@ -175,8 +178,7 @@ form {
 					<li class="fragment" data-fragment-index="5"><strong>Parameters:</strong></li>
 					<p class="fragment" data-fragment-index="6">The parameters of this interective presentation are <strong>matches played and won, win by runs and wickets</strong> and <strong>avg runs per over in normal and super overs.</strong></p>
 					<li class="fragment" data-fragment-index="7"><strong>Triggers:</strong></li>
-					<p class="fragment" data-fragment-index="8"><strong>Arrows</strong> and <strong>button</strong> are used to trigger updates in visulization. <strong>Arrows</strong> control allows users to move from one scene to another.<br>Button in the first scene allows user to get details about the elements of the narrative visualization. <br><strong>Radio buttons</strong> in the scene zooms to provide deeper look into the the top teams.</p>
-					                       
+					<p class="fragment" data-fragment-index="8"><strong>Arrows</strong> and <strong>button</strong> are used to trigger updates in visulization. <strong>Arrows</strong> control allows users to move from one scene to another.<br>Button in the first scene allows user to get details about the elements of the narrative visualization. <br><strong>Radio buttons</strong> in the scene zooms to provide deeper look into the the top teams.<br><strong>Labels</strong> allow user to display extra information on chart.</p>   					                       
 				</ol>
 			</small>							
 			<center>
@@ -240,6 +242,9 @@ form {
 	<h3 style="font-size:13px">
 	Chart is sorted in descending order of matches won. This is to showcase that top winning teams have high experience.
 	</h3>
+	<p>
+	Note: Negative annotations are marked with red color.
+	</p>	
 	<br><br>
 	<form>
 	  <label><input type="radio" name="mode" id="radio_matches" value="matches_all" checked>All Teams</label>
@@ -260,21 +265,40 @@ form {
 	<h1 style="font-size:25px">
 	WinByRuns vs WinByWickets
 	</h1>
-	<h3 style="font-size:15px">
-	In this plot we compare all wining team's win by runs and win by wickets count. Team name is a nominal variable as it contains names and plotted on X axis, 
-	Y axis has the count of WinByRuns and WinByWickets. A side by side bar chart was chosen to clearly showcase the win by runs and win by wickets for each winning team. 
+	<h3 style="font-size:12px">
+	In this plot we compare all wining team's matches won, win by runs and win by wickets. Team name is a nominal variable as it contains names and plotted on X axis, 
+	Y axis has the count of Matches Won, WinByRuns and WinByWickets. A side by side bar chart was chosen to clearly showcase the matches won, win by runs and win by wickets for each winning team. 
 	</h3>
-	<h3 style="font-size:15px">
-	This plot shows that top teams with win by wickets are also good in win by runs. In simple terms, this mean these that top teams can perform good while batting first or second.
+	<h3 style="font-size:12px">
+	This plot shows that top teams having high experience are good in win by wickets and reasonable well in win by runs. In simple terms, this mean these that top teams can perform good while batting first or second.
+	The mid experience teams are good in win by runs but getting better in win by wickets which seems to be good for team "SH". As expected that low experience teams are better in win by runs. 
 	</h3>
-	<h3 style="font-size:15px">
-	Plot is sorted in descending order of win by wickets.
+	<h3 style="font-size:12px">
+	</h3>
+	<h3 style="font-size:12px">
+	Even though plot is sorted in descending order of win by wickets it clearly separates high, mid, and low experience teams.
 	</h3>	
+	<h3 style="font-size:12px">
+	CSK, KKR and MI are top winning teams. KXP has high experience and extremely good in win by runs but does not demostrate good win by wickets compared to other top ranking teams. 
+	KXP good in one format of the game which is batting first.
+	</h3>
+	<p>
+	Note: 
+	</p>
+	<p>
+	1. Negative annotations are marked with red color.
+	</p>
+	<p>
+	2. Unselect checkbox to hide annotations
+	</p>
 	<br><br>
 	<form>
-	  <label><input type="radio" name="mode" id="radio_winby" value="winby_all" checked>All Teams</label>
-	  <label><input type="radio" name="mode" id ="radio_winby_top" value="winby_top">Top 5 Teams</label>
+	  <label><input type="radio" name="mode" id="radio_winby" value="winby_all" checked hidden></label>
 	</form>
+	<div style="position: absolute; top: 230px; left: 300px;">
+	  <input type="checkbox" id="check_win_ano_all" value="winby_check" checked/>
+	  <label for="option position:"> <span></span>Show All Annotations</label>
+	</div>	
 	<br>	
 	<center>
 		<div class="fragment" data-fragment-index="9" style="cursor: pointer; ">
@@ -384,7 +408,6 @@ form {
 	</div>
 	<script src="https://d3js.org/d3.v3.min.js"></script>
 	<script src="js/keypress.js"></script>
-	<script src="js/d3-ring-note.js"></script>
 </body>
 <script>
 	<!-- Dataset global variables -->
@@ -463,7 +486,7 @@ form {
 			console.log(data_win_by);
 		});
 		function type_winby(d) {
-		  d.win_by_runs = +d.win_by_runs;
+		  d.won = +d.won;
 		  return d;
 		}
 		
@@ -701,7 +724,7 @@ form {
 	controls();
 	
 	<!--ANNOTATE -->
-	function chart_annotation(svg, anotate_box, ano_text, text_coord, vertical_line, vert_line){
+	function chart_annotation(svg, anotate_box, ano_text, st_line, vertical_line, vert_line){
 	
 		var ano_rect = svg.selectAll(".bar").data(["1"]).enter();				
 		ano_rect.append("rect")
@@ -710,7 +733,7 @@ form {
 			.attr("y", anotate_box['y'])
 			.attr("width", anotate_box['w'])
 			.attr("height", anotate_box['h'])
-			.style("stroke","black")
+			.style("stroke", ano_text['color'])
 			.style("stroke-width", 2)
 			.style("stroke-dasharray", "5, 5")				
 			.style("fill-opacity", "0");
@@ -720,12 +743,12 @@ form {
 		   
 		ano_rect.append("line")
 			.attr("class", "ano_line")
-			.attr("x1", text_coord['x1'])
-			.attr("y1", text_coord['y1'])
-			.attr("x2", text_coord['x2'])				
-			.attr("y2", text_coord['y2'])
+			.attr("x1", st_line['x1'])
+			.attr("y1", st_line['y1'])
+			.attr("x2", st_line['x2'])				
+			.attr("y2", st_line['y2'])
 			.attr("fill", "none")
-			.attr("stroke", "black")
+			.attr("stroke", ano_text['color'])
 			.attr("stroke-linejoin", "round")
 			.attr("stroke-linecap", "round")
 			.attr("stroke-width", 1.5);  
@@ -736,18 +759,19 @@ form {
 			.attr("dy", ".35em")
 			.style("text-anchor", "middle")
 			.style("font", "16px times")
+			.attr("fill",ano_text['color'])
 			.text(function(d) { return d; });
 
 		if (vertical_line === 1) {
 		
 			ano_rect.append("line")
 				.attr("class", "ano_line")
-				.attr("x1", vert_line['x1'])
+				.attr("x1", vert_line['x1'])	
 				.attr("y1", vert_line['y1'])
 				.attr("x2", vert_line['x2'])				
 				.attr("y2", vert_line['y2'])
 				.attr("fill", "none")
-				.attr("stroke", "black")
+				.attr("stroke", ano_text['color'])
 				.attr("stroke-linejoin", "round")
 				.attr("stroke-linecap", "round")
 				.attr("stroke-width", 1.5);  
@@ -772,7 +796,7 @@ form {
 		var r_all = document.getElementById("radio_matches").checked;
 		var r_top = document.getElementById("radio_matches_top").checked;
 		
-		if (r_all == true) {
+		if (r_all == true) {	
 			matches_bar_chart(data_matches);
 		}
 		else {
@@ -795,7 +819,7 @@ form {
 		
 		function matches_bar_chart(data) {
 		
-			var margin = {top: 80, right: 80, bottom: 80, left: 80},
+			var margin = {top: 25, right: 80, bottom: 80, left: 80},
 				width = 960 - margin.left - margin.right,
 				height = 500 - margin.top - margin.bottom;
 			var x = d3.scale.ordinal()
@@ -849,7 +873,7 @@ form {
 					tooltip.style("opacity", 1)
 						   .style("left",(d3.event.pageX)+"px")
 						   .style("top",(d3.event.pageY)+"px")
-						   .html("Team Name:" + d.team + "\n" +"Won:"+d.won);
+						   .html("Team Name:" + d.team + "\n" +"Matches Won:"+d.won);
 				})
 			   .on("mouseout", function() { tooltip.style("opacity", 0) });
 
@@ -864,14 +888,14 @@ form {
 					tooltip.style("opacity", 1)
 						   .style("left",(d3.event.pageX)+"px")
 						   .style("top",(d3.event.pageY)+"px")
-						   .html("Team Name:" + d.team + "\n" +"Played:"+d.played);
+						   .html("Team Name:" + d.team + "\n" +"Matches Played:"+d.played);
 				})
 				.on("mouseout", function() { tooltip.style("opacity", 0) });
 					
-			function type(d) {
-			  d.played = +d.played;
-			  return d;
-			}
+			//function type(d) {
+			//  d.played = +d.played;
+			//  return d;
+			//}
 				
 			console.log(bars);
 			
@@ -888,7 +912,7 @@ form {
 			
 			legend.append("rect")
 			.attr("x", width - 5)
-			.attr("y", height+35)
+			.attr("y", height + 30)
 			.attr("width", 18)
 			.attr("height", 18)
 			.style("fill", colors);
@@ -897,7 +921,7 @@ form {
 			
 			legend.append("text")
 			.attr("x", width - 10)
-			.attr("y", height + 45)
+			.attr("y", height + 40)
 			.attr("dy", ".35em")
 			.style("text-anchor", "end")
 			.text(function(d) { return d; });
@@ -906,7 +930,7 @@ form {
 			legend_rect.append("rect")
 				.attr("class", "leg_rect")
 				.attr("x", width-150)
-				.attr("y", height+28)
+				.attr("y", height+23)
 				.attr("width", 200)
 				.attr("height", 50)
 				.style("stroke","black")
@@ -918,30 +942,59 @@ form {
 				
 			// annotatation			
 			if (r_all == true) { 
-				text_data = {'text':"High Experience Teams", 'x': 590, 'y': 40};			
-				anotate_box = { 'x' : 20, 'y': 0 , 'w': 420, 'h': 100 };
-				text_coord = { 'x1': 440, 'y1': 40, 'x2': 490, 'y2': 40 };
+				text_data = {'text':"High Experience Teams", 'x': 570, 'y': 40, 'color': 'black'};			
+				anotate_box = { 'x' : 20, 'y': 0 , 'w': 440, 'h': 120 };
+				st_line = { 'x1': 440, 'y1': 40, 'x2': 490, 'y2': 40 };
 				vert_line = {'': 0};
-				chart_annotation(svg, anotate_box, text_data, text_coord, 0, vert_line);	
+				chart_annotation(svg, anotate_box, text_data, st_line, 0, vert_line);	
 				
-				text_data = {'text':"Mid Experience Teams", 'x': 680, 'y': 185};			
-				anotate_box = { 'x' : 440, 'y': 160 , 'w': 130, 'h': 50 };
-				text_coord = { 'x1': 570, 'y1': 185, 'x2': 600, 'y2': 185};
+				text_data = {'text':"Mid Experience Teams", 'x': 680, 'y': 210, 'color': 'black'};			
+				anotate_box = { 'x' : 440, 'y': 185 , 'w': 130, 'h': 50 };
+				st_line = { 'x1': 570, 'y1': 210, 'x2': 600, 'y2': 210};
 				vert_line = {'': 0};
-				chart_annotation(svg, anotate_box, text_data, text_coord, 0, vert_line);	
+				chart_annotation(svg, anotate_box, text_data, st_line, 0, vert_line);	
 
-				text_data = {'text':"Low Experience Teams", 'x': 740, 'y': 220};					
-				anotate_box = { 'x' : 580, 'y': 240 , 'w': 230, 'h': 90 };
-				text_coord = { 'x1': 620, 'y1': 220, 'x2': 660, 'y2': 220};
-				vert_line = { 'x1': 620, 'y1': 240, 'x2': 620, 'y2': 220};
-				chart_annotation(svg, anotate_box, text_data, text_coord, 1, vert_line);	
+				text_data = {'text':"Low Experience Teams", 'x': 740, 'y': 270, 'color': 'black'};					
+				anotate_box = { 'x' : 580, 'y': 290 , 'w': 220, 'h': 110 };
+				st_line = { 'x1': 620, 'y1': 270, 'x2': 660, 'y2': 270};
+				vert_line = { 'x1': 620, 'y1': 290, 'x2': 620, 'y2': 270};
+				chart_annotation(svg, anotate_box, text_data, st_line, 1, vert_line);	
 			}
-			else{ 
-				text_data = {'text':"CSK : Top ranked team with relatively lesser experience", 'x': 570, 'y': 0};			
+			else { 
+				text_data = {'text':"CSK : Top ranked team with relatively lesser experience", 'x': 570, 'y': 0, 'color': 'black'};			
 				anotate_box = { 'x' : 230, 'y': 0 , 'w': 100, 'h': 100 };
-				text_coord = { 'x1': 320, 'y1': 0, 'x2': 370, 'y2': 0 };
+				st_line = { 'x1': 320, 'y1': 0, 'x2': 370, 'y2': 0 };
 				vert_line = {'': 0};
-				chart_annotation(svg, anotate_box, text_data, text_coord, 0, vert_line);	
+				chart_annotation(svg, anotate_box, text_data, st_line, 0, vert_line);	
+				
+				text_data = {'text':"KXP: Top", 'x': 840, 'y': 20, 'color': 'red'};			
+				anotate_box = { 'x' : 640, 'y': 20 , 'w': 145, 'h': 250 };
+				st_line = { 'x1': 785, 'y1': 20, 'x2': 800, 'y2': 20 };
+				vert_line = {'': 0};
+				chart_annotation(svg, anotate_box, text_data,	 st_line, 0, vert_line);
+
+				text_data = {'text':"	ranked", 'x': 830, 'y': 40, 'color': 'red'};							
+				var ano_rect = svg.selectAll(".line").data([text_data['text']]).enter();								
+				ano_rect.append("text")		
+					.attr("x", text_data['x'])
+					.attr("y", text_data['y'])
+					.attr("dy", ".35em")
+					.style("text-anchor", "middle")
+					.style("font", "16px times")
+					.attr("fill",text_data['color'])
+					.text(function(d) { return d; });				
+					
+				text_data = {'text':"least wins", 'x': 840, 'y': 60, 'color': 'red'};							
+				var ano_rect = svg.selectAll(".line").data([text_data['text']]).enter();								
+				ano_rect.append("text")		
+					.attr("x", text_data['x'])
+					.attr("y", text_data['y'])
+					.attr("dy", ".35em")
+					.style("text-anchor", "middle")
+					.style("font", "16px times")
+					.attr("fill",text_data['color'])
+					.text(function(d) { return d; });				
+					
 			}	
 		}			
 	}
@@ -955,24 +1008,28 @@ form {
 		d3.selectAll("input")
 			.on("change", changed);
 		
+		function winby_check() {
+			console.log("check box selected ...");
+		}
+		
 		function changed() {
-		  console.log('winby radio changed');	
-		  console.log(this.value);	
-		  if (this.value === "winby_all") winby_all();
-		  else winby_top();
+		  console.log('checkbox changed');	
+		  var r_all = document.getElementById("check_win_ano_all");
+		  console.log(r_all.checked);
+		  winby_all();	
 		}		
 
 		var r_all = document.getElementById("radio_winby").checked;
-		var r_top = document.getElementById("radio_winby_top").checked;
+		//var r_top = document.getElementById("radio_winby_top").checked;
 		
 		if (r_all == true) {
 			winby_bar_chart(data_win_by);
 		}
-		else {
+		else {	
 			winby_bar_chart(data_top_win_by);
 		}
 		
-		function winby_all() {
+			function winby_all() {
 			//clear_screen();
 			d3.selectAll("svg").remove();
 			console.log('winby radio changed inside function all ..');				
@@ -987,9 +1044,9 @@ form {
 		}
 		
 		function winby_bar_chart(data) {
-		
-			var margin = {top: 60, right: 80, bottom: 80, left: 60},
-				width = 960 - margin.left - margin.right,
+
+			var margin = {top: 25, right: 80, bottom: 80, left: 60},
+				width = 1200 - margin.left - margin.right,
 				height = 500 - margin.top - margin.bottom;
 			var x = d3.scale.ordinal()
 				.rangeRoundBands([0, width], .1);
@@ -1001,7 +1058,8 @@ form {
 				
 			// create left yAxis
 			var yAxisLeft = d3.svg.axis().scale(y0).ticks(4).orient("left");
-
+				
+			console.log('new tooltip');	
 			var tooltip = d3.select("#tooltip");
 
 			var svg = d3.select("body").append("svg")
@@ -1011,8 +1069,11 @@ form {
 				.attr("class", "graph")
 				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 			
+			console.log('max matches played:');
+			console.log(data);
+			console.log(d3.max(data, function(d) { return d.won; }));
 			x.domain(data.map(function(d) { return d.team; }));
-			y0.domain([0, d3.max(data, function(d) { return d.win_by_runs; })]);
+			y0.domain([0, 157]);
 	 
 			svg.append("g")
 			  .attr("class", "x axis")
@@ -1028,43 +1089,14 @@ form {
 				.attr("dy", "-2em")
 				.style("text-anchor", "middle")
 				.style("text-anchor", "middle")
-				.text("WIN BY");
+				.text("WINS");
 						
 			bars = svg.selectAll(".bar").data(data).enter();
+
 			bars.append("rect")
 			  .attr("class", "bar1")
 			  .attr("x", function(d) { return x(d.team); })
-			  .attr("width", x.rangeBand()/2)
-			  .attr("y", function(d) { return y0(d.win_by_wickets); })
-			  .attr("height", function(d,i,j) { return height - y0(d.win_by_wickets); })
-			  .attr("fill", color_wbr)
-			  .on("mouseover", function(d,i) {
-					tooltip.style("opacity", 1)
-						   .style("left",(d3.event.pageX)+"px")
-						   .style("top",(d3.event.pageY)+"px")
-						   .html("Team Name:" + d.team + "\n" +"Win by wickets:"+d.win_by_wickets);
-				})
-			   .on("mouseout", function() { tooltip.style("opacity", 0) });
-
-			bars.append("rect")
-			  .attr("class", "bar2")
-			  .attr("x", function(d) { return x(d.team) + x.rangeBand()/4; })
-			  .attr("width", x.rangeBand() / 4)
-			  .attr("y", function(d) { return y0(d.win_by_runs); })
-			  .attr("height", function(d,i,j) { return height - y0(d.win_by_runs); })
-			  .attr("fill", color_wbw)
-			  .on("mouseover", function(d,i) {
-					tooltip.style("opacity", 1)
-						   .style("left",(d3.event.pageX)+"px")
-						   .style("top",(d3.event.pageY)+"px")
-						   .html("Team Name:" + d.team + "\n" +"Win by wickets:"+d.win_by_runs);
-				})
-				.on("mouseout", function() { tooltip.style("opacity", 0) });
-				
-			bars.append("rect")
-			  .attr("class", "bar3")
-			  .attr("x", function(d) { return x(d.team) + x.rangeBand()/4 + x.rangeBand()/4; })
-			  .attr("width", x.rangeBand()/4)
+			  .attr("width", x.rangeBand()/3)
 			  .attr("y", function(d) { return y0(d.won); })
 			  .attr("height", function(d,i,j) { return height - y0(d.won); })
 			  .attr("fill", color_mp)
@@ -1072,29 +1104,58 @@ form {
 					tooltip.style("opacity", 1)
 						   .style("left",(d3.event.pageX)+"px")
 						   .style("top",(d3.event.pageY)+"px")
-						   .html("Team Name:" + d.team + "\n" +"Won:"+d.won);
+						   .html("Team Name:" + d.team + "               Matches Won:"+d.won);
 				})
 			   .on("mouseout", function() { tooltip.style("opacity", 0) });
-				
-				
-			function type(d) {
-			  d.won = +d.won;
-			  return d;
-			}
+						
+			bars.append("rect")
+			  .attr("class", "bar2")
+			  .attr("x", function(d) { return x(d.team)+ x.rangeBand()/3; })
+			  .attr("width", x.rangeBand()/3)
+			  .attr("y", function(d) { return y0(d.win_by_wickets); })
+			  .attr("height", function(d,i,j) { return height - y0(d.win_by_wickets); })
+			  .attr("fill", color_wbr)
+			  .on("mouseover", function(d,i) {
+					tooltip.style("opacity", 1)
+						   .style("left",(d3.event.pageX)+"px")
+						   .style("top",(d3.event.pageY)+"px")
+						   .html("Team Name:" + d.team + "    " +"Matches Win by wickets:"+d.win_by_wickets);
+				})
+			   .on("mouseout", function() { tooltip.style("opacity", 0) });
+
+			bars.append("rect")
+			  .attr("class", "bar3")
+			  .attr("x", function(d) { return x(d.team) + x.rangeBand()/3 + x.rangeBand()/3; })
+			  .attr("width", x.rangeBand() / 3)
+			  .attr("y", function(d) { return y0(d.win_by_runs); })
+			  .attr("height", function(d,i,j) { return height - y0(d.win_by_runs); })
+			  .attr("fill", color_wbw)
+			  .on("mouseover", function(d,i) {
+					tooltip.style("opacity", 1)
+						   .style("left",(d3.event.pageX)+"px")
+						   .style("top",(d3.event.pageY)+"px")
+						   .html("Team Name:" + d.team + "     " +"Matches Win by wickets:"+d.win_by_runs);
+				})
+				.on("mouseout", function() { tooltip.style("opacity", 0) });
+												
+			//function type(d) {
+			//  d.won = +d.won;
+			//  return d;
+			//}
 
 			<!--Create the legend -->
 			var colors = d3.scale.ordinal()
-				.range([color_wbr, color_wbw]);		
+				.range([color_mp, color_wbr, color_wbw]);		
 			
 			var legend = svg.selectAll(".legend")
-			.data(["Win By Wickets", "Win By Runs"])
+			.data(["Matches Played", "Win By Wickets", "Win By Runs"])
 			.enter().append("g")
 			.attr("class", "legend")
 			.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });		
 			
 			legend.append("rect")
 			.attr("x", width - 5)
-			.attr("y", height+35)
+			.attr("y", 10)
 			.attr("width", 18)
 			.attr("height", 18)
 			.style("fill", colors);
@@ -1103,7 +1164,7 @@ form {
 			
 			legend.append("text")
 			.attr("x", width - 10)
-			.attr("y", height + 45)
+			.attr("y", 20)
 			.attr("dy", ".35em")
 			.style("text-anchor", "end")
 			.text(function(d) { return d; });	
@@ -1112,13 +1173,43 @@ form {
 			legend_rect.append("rect")
 				.attr("class", "leg_rect")
 				.attr("x", width-150)
-				.attr("y", height+28)
+				.attr("y", 0)
 				.attr("width", 200)
-				.attr("height", 50)
+				.attr("height", 80)
 				.style("stroke","black")
 				.style("stroke-width", 2)
 				.style("fill-opacity", 0.001);		
-							
+
+			var checkbox_state = document.getElementById("check_win_ano_all");
+			//console.log(r_all.checked);
+			
+			// annotatation	
+			if (checkbox_state.checked == true) { 
+				text_data = {'text':"High Experience Teams good win by wickets and runs", 'x': 680, 'y': 0, 'color': 'black'};			
+				anotate_box = { 'x' : 10, 'y': 0 , 'w': 460, 'h': 220 };
+				st_line = { 'x1': 470, 'y1': 0, 'x2': 490, 'y2': 0	 };
+				vert_line = {'': 0};
+				chart_annotation(svg, anotate_box, text_data, st_line, 0, vert_line);	
+				
+				text_data = {'text':"Mid Experience Teams good win by runs", 'x': 740, 'y': 60, 'color': 'black'};			
+				anotate_box = { 'x' : 490, 'y': 165 , 'w': 150, 'h': 130 };
+				st_line = {'x1': 560, 'y1': 60, 'x2': 590, 'y2': 60};
+				vert_line = { 'x1': 560, 'y1': 165, 'x2': 560, 'y2': 60};
+				chart_annotation(svg, anotate_box, text_data, st_line, 1, vert_line);	
+
+				text_data = {'text':"Low Experience Teams good win by runs than wickets", 'x': 940, 'y': 220, 'color': 'black'};
+				anotate_box = { 'x' : 730, 'y': 265 , 'w': 320, 'h': 70};
+				st_line = { 'x1': 0, 'y1': 0, 'x2': 0, 'y2': 0 };
+				vert_line = { 'x1': 910, 'y1': 265, 'x2': 910, 'y2': 230 };
+				chart_annotation(svg, anotate_box, text_data, st_line, 1, vert_line);
+			
+				<!-- Exception Team with high experience but bad win by wickets -->
+				text_data = {'text':"High Experience bad win by wickets but good win by runs", 'x': 940, 'y': 100, 'color': 'red'};			
+				anotate_box = { 'x' : 650, 'y': 80 , 'w': 60, 'h': 220 };
+				st_line = { 'x1': 710, 'y1': 100, 'x2': 740, 'y2': 100 };
+				vert_line = {'': 0};
+				chart_annotation(svg, anotate_box, text_data, st_line, 0, vert_line);	
+			}
 		}
 	}
 	
