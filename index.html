@@ -123,34 +123,29 @@ form {
 		<div class="fragment" data-fragment-index="1">
 			<img src="images/IPL_Logo.png" style="border: none; background:none; box-shadow:none; position:absolute; top:0px; left:0px; width=70% height=70%" >
 		</div>					
-		<section style="position: absolute; top: 100px; left: 80px;">
+		<section style="position: absolute; top: 140px; left: 150px;">
 			<center>
 				<h1>
 					IPL TOURNAMENT
 				</h1>
 				<br>
-				<small>
-					<ol>				
-						<h3>
-							A professional Twenty20 cricket league in India. Twenty20 match is a form of limited overs cricket and it involves two teams.  
-						</h3>
-						<h3>
-							There have been ten seasons of the IPL tournament starting from 2007 to 2017. A toss decides whether a team will bat or bowl first. 
-						</h3>
-						<h3>
-							Team batting first wins then its win by runs and on the other hand team batting second wins then its considered as win by wickets. 
-							There are in total 20 overs and each over bowled has six deliveries. 			
-						</h3>
-					</ol>
+					<p>
+						A professional Twenty20 cricket league in India. Twenty20 match is a form of limited overs cricket and it involves two teams.  
+					</p>
+					<p>
+						There have been ten seasons of the IPL tournament starting from 2007 to 2017. A toss decides whether a team will bat or bowl first. 
+					</p>
+					<p>
+						There are in total 20 overs and each over bowled has six deliveries. 			
+					</p>
 					<br><br>
 					<p>
 					Created by Sudhir Behani
 					</p>
-				</small>
 				<br><br>
-				<button class="button" onclick="about_vis()"><strong>About the Visualization</strong></button>
-				<div class="fragment" data-fragment-index="2" style="cursor: pointer;">
-					<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:580px; left:1320px; width:80px;" height="60" width="60">
+				<button class="button" onclick="about_vis()" style="cursor: pointer;"><strong>About the Visualization</strong></button>
+				<div class="fragment" data-fragment-index="2">
+					<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:530px; left:1250px; width:80px;" height="60" width="60">
 				</div>
 			</center>
 		</section>
@@ -182,15 +177,14 @@ form {
 				</ol>
 			</small>							
 			<center>
-			<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
+			<div class="fragment" data-fragment-index="9" >
 				<img src="images/arrow-left.png" style="border: none; background:none; box-shadow:none;" height="60" width="60">
 			</div>			
 			</center>			
 		</section>
 	</div>
 		
-	<div class="slides" id="third_slide" hidden>
-	<center>
+	<div class="slides" id="third_slide" style="position: absolute; top: 100px; left: 100px;" hidden>
 		<h1>
 		THE DATASET
 		</h1>
@@ -209,18 +203,19 @@ form {
 		<strong>Second</strong> file consists of deliveries which contains detailed information about each match. Inning details for each match, team batting first has innings as 1 and other team batting second has innings as 2. 
 		Batting team, bowling team names and this gets revered for innings 2, as team batting first will bowl and team bowling will be batting. So for each match there are 2 innings and each team will bat and bowl once. 
 		As this is a twenty over game over column contains each over number and ball column contains information about each bowl per over. Information like batsman, non_striker (batsman) and bowler are also added. 
-		Is_super_over columns displays 1 when it’s a super over. For each match, there will be <strong>5 super overs</strong> where there are restrictions for placing a fielders inside the circle so that batsman get the liberty to hit long shots. 
+		For each match, there will be <strong>5 super overs</strong> where there are restrictions for placing a fielders inside the circle so that batsman get the liberty to hit long shots. 
 		</p>
 		
+		<center>
 		<a href="https://www.kaggle.com/manasgarg/ipl">Link to Dataset Source</a>
+		</center>
 		
-		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
-			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none; position:absolute; top:630px; left:1400px; width:80px;" height="60" width="60">
+		<div class="fragment" data-fragment-index="9">
+			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none; position:absolute; top:530px; left:1300px; width:80px;" height="60" width="60">
 		</div>					
-		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
-			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:680px; left:1400px; width:80px;" height="60" width="60">
+		<div class="fragment" data-fragment-index="9">
+			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:580px; left:1300px; width:80px;" height="60" width="60">
 		</div>		
-	</center>	
 	</div>
 	
 	<div class="slides" id="fourth_slide" hidden>
@@ -243,7 +238,7 @@ form {
 	Chart is sorted in descending order of matches won. This is to showcase that top winning teams have high experience.
 	</h3>
 	<p>
-	Note: Negative annotations are marked with red color.
+	Note: Exceptions are marked with red color annotations
 	</p>	
 	<br><br>
 	<form>
@@ -252,10 +247,10 @@ form {
 	</form>
 	<br>
 	<center>
-		<div class="fragment" data-fragment-index="9" style="cursor: pointer;" 	>
+		<div class="fragment" data-fragment-index="9">
 			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none; position:absolute; top:630px; left:1400px; width:80px;" height="60" width="60">
 		</div>						
-		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
+		<div class="fragment" data-fragment-index="9">
 			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:680px; left:1400px; width:80px;" height="60" width="60">
 		</div>	
 	</center>	
@@ -265,28 +260,28 @@ form {
 	<h1 style="font-size:25px">
 	WinByRuns vs WinByWickets
 	</h1>
-	<h3 style="font-size:12px">
+	<h3 style="font-size:13px">
 	In this plot we compare all wining team's matches won, win by runs and win by wickets. Team name is a nominal variable as it contains names and plotted on X axis, 
 	Y axis has the count of Matches Won, WinByRuns and WinByWickets. A side by side bar chart was chosen to clearly showcase the matches won, win by runs and win by wickets for each winning team. 
 	</h3>
-	<h3 style="font-size:12px">
+	<h3 style="font-size:13px">
 	This plot shows that top teams having high experience are good in win by wickets and reasonable well in win by runs. In simple terms, this mean these that top teams can perform good while batting first or second.
-	The mid experience teams are good in win by runs but getting better in win by wickets which seems to be good for team "SH". As expected that low experience teams are better in win by runs. 
+	The mid experience teams are good in win by runs but getting better in win by wickets which seems to be good for team "SH". Low experience teams are relatively better in win by runs. 
 	</h3>
-	<h3 style="font-size:12px">
+	<h3 style="font-size:13px">
 	</h3>
-	<h3 style="font-size:12px">
+	<h3 style="font-size:13px">
 	Even though plot is sorted in descending order of win by wickets it clearly separates high, mid, and low experience teams.
 	</h3>	
-	<h3 style="font-size:12px">
-	CSK, KKR and MI are top winning teams. KXP has high experience and extremely good in win by runs but does not demostrate good win by wickets compared to other top ranking teams. 
+	<h3 style="font-size:13px">
+	CSK, KKR and MI are top winning teams. KXP has high experience and extremely good in win by runs but does not demostrate good win by wickets compared to other top teams. 
 	KXP good in one format of the game which is batting first.
 	</h3>
 	<p>
 	Note: 
 	</p>
 	<p>
-	1. Negative annotations are marked with red color.
+	1. Exceptions are marked with red color annotation
 	</p>
 	<p>
 	2. Unselect checkbox to hide annotations
@@ -295,16 +290,16 @@ form {
 	<form>
 	  <label><input type="radio" name="mode" id="radio_winby" value="winby_all" checked hidden></label>
 	</form>
-	<div style="position: absolute; top: 230px; left: 300px;">
+	<div style="position: absolute; top: 255px; left: 300px;">
 	  <input type="checkbox" id="check_win_ano_all" value="winby_check" checked/>
 	  <label for="option position:"> <span></span>Show All Annotations</label>
 	</div>	
 	<br>	
 	<center>
-		<div class="fragment" data-fragment-index="9" style="cursor: pointer; ">
+		<div class="fragment" data-fragment-index="9">
 			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none; position:absolute; top:630px; left:1400px; width:80px;" height="60" width="60">
 		</div>						
-		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
+		<div class="fragment" data-fragment-index="9">
 			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:680px; left:1400px; width:80px;" height="60" width="60">
 		</div>	
 	</center>	
@@ -338,10 +333,10 @@ form {
 	</form>
 	<br>		
 	<center>
-		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
+		<div class="fragment" data-fragment-index="9">
 			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none; position:absolute; top:630px; left:1400px; width:80px;" height="60" width="60">
 		</div>						
-		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
+		<div class="fragment" data-fragment-index="9">
 			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:680px; left:1400px; width:80px;" height="60" width="60">
 		</div>	
 	</center>	
@@ -356,7 +351,9 @@ form {
 	</b></p>
 	<small>
 		<p>
-		This plot displays the top teams with the max number of wins.
+		This plot displays the top teams with the max number of wins. It has categorised teams into high, medium and low risk teams based on number of matches played.
+		As per the categorinsation, number of wins is correlated to the number of matches played i.e. experience of the team with more matches played.
+		Top 5 teams teams are MI, CSK, KKR, RCB and, KXP respectively as per number of wins. CSK has least experience compared to other top 5 teams.	
 		</p>
 	</small>
 	<p><b>
@@ -364,13 +361,15 @@ form {
 	</b></p>
 	<small>
 		<p>
-		If team batting first wins the match they are counted under win by runs else team batting second will win by wickets. 
-		A win by runs and win by wickets for each winning team shows that teams wining by wickets are the same as per matches won. 
+		IPL tournament being only a 20 over match, team batting first have the advantage of playing without any mental difficulty pressure in comparison 
+		to team batting second who have the runs to be scored. So win by wickets is more difficult. High experience teams have good win by wickets. Hence more experience give teams an ability to handle pressure situations well.		
+		KXP is an exception even though has good experience and good win by wickets still has very low win by wickets. 
 		</p>
 		<p>
-		IPL tournament being only a 20 over match, team batting first have the advantage of playing without any mental difficulty pressure in comparison 
-		to team batting second who have the runs to be scored. So win by wickets is more difficult. Top six teams winning by wickets are the same as teams 
-		with total matches won in previous plot. Though their rankings might be different. 
+		Likewise, mid experience teams have good win by runs. Due to lack to experience they are good while batting first. Low experience teams have more win by runs than win by wickets.
+		</p>
+		<p>
+		<strong>Top 4 winining teams</strong> CSK, KKR, MI and RCB has high win by wickets and also good win by runs. <strong>MI</strong> has both win by runs and wickets ver close which signifies they are good while batting first or second. 
 		</p>
 	</small>
 	<p><b>
@@ -378,26 +377,60 @@ form {
 	</b></p>
 	<small>
 		<p>
-		Runs scored plot shows that an important factor for all the winning teams is to have a high scoring rate during the super overs. 
-		The scoring rate is much higher in super overs compared to runs scored in normal overs. 
+		High experience teams score good avgerage runs in normal overs. Mid experience teams score moderate runs in normal overs with <strong>exception to team SH</strong>, 
+		which has very high super of scoring rate but low in normal overs.
 		</p>
 		<p>
-		This is true for all the winning teams and so it is an important characteristics teams. Though there could be other important factors which could be explored in 
-		future like home ground, bowling and batting statistics, wickets taken and penalty runs given during bowling.
+		CSK is an exception in high experience tems with less scoring rate in super overs but good in normal overs. 
+		SH is a moderate experience team having high rate of scoring runs in super overs. This can be one reason for their wins while batting first i.e. win by runs. 
+		<strong>Scoring rate in normal overs</strong> is an important factor for wining a match though other factors needs to be explored.	
+		</p>
+		<p>
+		<strong>To infer,</strong> experience with the game is one factor for most wins. <strong>Experience</strong> has high <strong>correlation</strong> with <strong>win by wickets</strong> for top performing teams and also with <strong>high scoring rate in normal overs.</strong>
+		Other factors like playing in home ground, bowling and batting statistics, wickets taken by bowlers and penalty runs given during bolwing needs to be studied.
 		</p>
 	</small>
-		<center>
-			<h1>
-				Thank You!!
-			</h1>	
-		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
+		<div class="fragment" data-fragment-index="9">
 			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none; position:absolute; top:630px; left:1400px; width:80px;" height="60" width="60">
 		</div>					
-		<div class="fragment" data-fragment-index="9" style="cursor: pointer;">
+		<div class="fragment" data-fragment-index="9">
 			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:680px; left:1400px; width:80px;" height="60" width="60">
 		</div>			
-		</center>
 	</div>	
+	<div class="slides" id="credit_slide" hidden>
+		<div style="position: absolute; top: 150px; left: 350px;">
+		<h1>
+		CREDITS & ACKNOWLEDGEMENTS
+		</h1>
+	   <p>
+		   <ul>
+			   <li>Kaggle competition for the providing dataset</li>
+			   <li>CS498 Staff for their support</li>
+			   <li>Github for providing hosting services</li>
+			   <li><a href="https://d3js.org/">d3js.org</a> for providing good examples</li>
+			   <li><a href="https://www.w3schools.com">w3schools</a> for learning javascript and html</li>
+		   </ul>
+	   </p>
+	   </div>
+		<div class="fragment" data-fragment-index="9">
+			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none; position:absolute; top:630px; left:1400px; width:80px;" height="60" width="60">
+		</div>					
+		<div class="fragment" data-fragment-index="9">
+			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:680px; left:1400px; width:80px;" height="60" width="60">
+		</div>			   
+	</div>
+	
+	<div class="slides" id="github_slide"  hidden>
+		<div style="position: absolute; top: 320px; left: 550px;">
+			<a href="https://github.com/sudhir-behani/visualization_using_d3">GITHUB SOURCE CODE</a>
+		</div>
+		<div class="fragment" data-fragment-index="9">
+			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none; position:absolute; top:630px; left:1400px; width:80px;" height="60" width="60">
+		</div>					
+		<div class="fragment" data-fragment-index="9">
+			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:680px; left:1400px; width:80px;" height="60" width="60">
+		</div>				
+	</div>
 		
 	<footer id="main_footer" hidden>
       <small>Compiled by: Sudhir Behani</small>
@@ -648,6 +681,18 @@ form {
 				var div_elem = document.getElementById("last_slide");
 				div_elem.style.display = "block";
 				break;				
+			case 7:
+				clear_screen();
+				body_font("20px");								
+				var div_elem = document.getElementById("credit_slide");
+				div_elem.style.display = "block";
+				break;				
+			case 8:
+				clear_screen();
+				body_font("40px");								
+				var div_elem = document.getElementById("github_slide");
+				div_elem.style.display = "block";
+				break;								
 			default:
 				clear_screen();
 		}				
@@ -676,7 +721,7 @@ form {
 		if (rl_page !== 1) {		
 			event.preventDefault();
 			page = page + 1;
-			if (page == 7 ) {
+			if (page == 9 ) {
 				page = 1;
 			}			
 			switch_page(page);
@@ -1096,7 +1141,7 @@ form {
 				.attr("dy", "-2em")
 				.style("text-anchor", "middle")
 				.style("text-anchor", "middle")
-				.text("WINS");
+				.text("COUNT");
 						
 			bars = svg.selectAll(".bar").data(data).enter();
 
