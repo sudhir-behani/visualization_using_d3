@@ -145,7 +145,7 @@ form {
 				<br><br>
 				<button class="button" onclick="about_vis()" style="cursor: pointer;"><strong>About the Visualization</strong></button>
 				<div class="fragment" data-fragment-index="2">
-					<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:530px; left:1250px; width:80px;" height="60" width="60">
+					<img src="images/arrow-down.png" onclick="click_down_key()" style="cursor: pointer; border: none; background:none; box-shadow:none; position:absolute; top:530px; left:1250px; width:80px;" height="60" width="60">
 				</div>
 			</center>
 		</section>
@@ -166,19 +166,25 @@ form {
 				<ol>
 					<li class="fragment" data-fragment-index="1"><strong>Scenes:</strong></li>
 					<p class="fragment" data-fragment-index="2">The <strong>scenes</strong> comprises of each page that make up the presentation. These scenes contains textual and chart description about the visualization.
-						They can be controlled using arrow keys which enable users to move from scene to scene. Arrow image/s are clearly visible in each scene to guide user on which key to press. 
+						They can be controlled using arrow keys or clicking mouse keys on arrow image which enable users to move from scene to scene. Arrow image/s are clearly visible in each scene to guide user on which key to press.
+						<br>
+						<strong>Scene 1 :</strong> Includes an analysis between matches played and matches won
+						<br>
+                        <strong>Scene 2 :</strong> Includes comparision between matches played, win by wickets and win by runs.
+						<br>
+                        <strong>Scene 3 :</strong> Includes comparision between runs scored in super over vs runs scored in normal overs.   						
 					</p>
 					<li class="fragment" data-fragment-index="3"><strong>Annotations:</strong></li>
-					<p class="fragment" data-fragment-index="4">The <strong>tooltip</strong> labels that appear when users hover over data points to provide more infromation.<strong> Annotation box</strong> that highlight important points in the charts. <strong>Legends</strong> describes the meaning of colors used in each charts.</p>
+					<p class="fragment" data-fragment-index="4">The <strong>tooltip</strong> labels that appear when users hover over data points to provide more infromation about the bar. Tooltips are cleared each scene as next scene incldes different set of parameters.<strong> Annotation box</strong> that highlight important points in the charts. <strong>Legends</strong> describes the meaning of colors used in each charts.</p>
 					<li class="fragment" data-fragment-index="5"><strong>Parameters:</strong></li>
-					<p class="fragment" data-fragment-index="6">The parameters of this interective presentation are <strong>matches played and won, win by runs and wickets</strong> and <strong>avg runs per over in normal and super overs.</strong>Description about each paramaters are present under the dataset explanation page.</p>
+					<p class="fragment" data-fragment-index="6">The parameters of this interective presentation are <strong>matches played and won, win by runs and wickets</strong> and <strong>avg runs per over in normal and super overs.</strong> Description about each paramaters are present under the dataset explanation page.</p>
 					<li class="fragment" data-fragment-index="7"><strong>Triggers:</strong></li>
 					<p class="fragment" data-fragment-index="8"><strong>Arrows</strong>, <strong>button</strong>, <strong>radio buttons</strong> and <strong>labels</strong> are used to trigger updates in this visulization. <strong>Arrows</strong> control allows user to move from one scene to another.<br><strong>Button</strong> in the first scene allows user to get details about the elements of the narrative visualization. <br><strong>Radio buttons</strong> in the scene zooms to provide deeper look into the the top teams.<br><strong>Label</strong> allows user to control display of annotations.</p>
 				</ol>
 			</small>							
 			<center>
 			<div class="fragment" data-fragment-index="9" >
-				<img src="images/arrow-left.png" style="border: none; background:none; box-shadow:none;" height="60" width="60">
+				<img src="images/arrow-left.png" onclick="click_left_key()" style="cursor: pointer; border: none; background:none; box-shadow:none;" height="60" width="60">
 			</div>			
 			</center>			
 		</section>
@@ -211,10 +217,10 @@ form {
 		</center>
 		
 		<div class="fragment" data-fragment-index="9">
-			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none; position:absolute; top:530px; left:1300px; width:80px;" height="60" width="60">
+			<img src="images/arrow-up.png" onclick="click_up_key()" style="cursor: pointer; border: none; background:none; box-shadow:none; position:absolute; top:530px; left:1300px; width:80px;" height="60" width="60">
 		</div>					
 		<div class="fragment" data-fragment-index="9">
-			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:580px; left:1300px; width:80px;" height="60" width="60">
+			<img src="images/arrow-down.png" onclick="click_down_key()" style="cursor: pointer; border: none; background:none; box-shadow:none; position:absolute; top:580px; left:1300px; width:80px;" height="60" width="60">
 		</div>		
 	</div>
 	
@@ -248,10 +254,10 @@ form {
 	<br>
 	<center>
 		<div class="fragment" data-fragment-index="9">
-			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none; position:absolute; top:630px; left:1400px; width:80px;" height="60" width="60">
+			<img src="images/arrow-up.png" onclick="click_up_key()" style="cursor: pointer; border: none; background:none; box-shadow:none; position:absolute; top:630px; left:1400px; width:80px;" height="60" width="60">
 		</div>						
 		<div class="fragment" data-fragment-index="9">
-			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:680px; left:1400px; width:80px;" height="60" width="60">
+			<img src="images/arrow-down.png" onclick="click_down_key()" style="cursor: pointer; border: none; background:none; box-shadow:none; position:absolute; top:680px; left:1400px; width:80px;" height="60" width="60">
 		</div>	
 	</center>	
 	</div>
@@ -297,10 +303,10 @@ form {
 	<br>	
 	<center>
 		<div class="fragment" data-fragment-index="9">
-			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none; position:absolute; top:630px; left:1400px; width:80px;" height="60" width="60">
+			<img src="images/arrow-up.png" onclick="click_up_key()" style="cursor: pointer; border: none; background:none; box-shadow:none; position:absolute; top:630px; left:1400px; width:80px;" height="60" width="60">
 		</div>						
 		<div class="fragment" data-fragment-index="9">
-			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:680px; left:1400px; width:80px;" height="60" width="60">
+			<img src="images/arrow-down.png" onclick="click_down_key()" style="cursor: pointer; border: none; background:none; box-shadow:none; position:absolute; top:680px; left:1400px; width:80px;" height="60" width="60">
 		</div>	
 	</center>	
 	</div>
@@ -326,7 +332,7 @@ form {
 	<h3 style="font-size:13px">
 	Plot is sorted in descending order of avg runs scored in normal overs and it mostly seperates high, mid and low experience teams.
 	</h3>
-	<br><br>
+	<br><br> 
 	<form>
 	  <label><input type="radio" name="mode" id="radio_runs" value="runs_all" checked>All Teams</label>
 	  <label><input type="radio" name="mode" id ="radio_runs_top" value="runs_top">Top 5 Teams</label>
@@ -334,10 +340,10 @@ form {
 	<br>		
 	<center>
 		<div class="fragment" data-fragment-index="9">
-			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none; position:absolute; top:630px; left:1400px; width:80px;" height="60" width="60">
+			<img src="images/arrow-up.png" onclick="click_up_key()" style="cursor: pointer; border: none; background:none; box-shadow:none; position:absolute; top:630px; left:1400px; width:80px;" height="60" width="60">
 		</div>						
 		<div class="fragment" data-fragment-index="9">
-			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:680px; left:1400px; width:80px;" height="60" width="60">
+			<img src="images/arrow-down.png" onclick="click_down_key()" style="cursor: pointer; border: none; background:none; box-shadow:none; position:absolute; top:680px; left:1400px; width:80px;" height="60" width="60">
 		</div>	
 	</center>	
 	</div>
@@ -391,10 +397,10 @@ form {
 		</p>
 	</small>
 		<div class="fragment" data-fragment-index="9">
-			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none; position:absolute; top:630px; left:1400px; width:80px;" height="60" width="60">
+			<img src="images/arrow-up.png" onclick="click_up_key()" style="cursor: pointer; border: none; background:none; box-shadow:none; position:absolute; top:630px; left:1400px; width:80px;" height="60" width="60">
 		</div>					
 		<div class="fragment" data-fragment-index="9">
-			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:680px; left:1400px; width:80px;" height="60" width="60">
+			<img src="images/arrow-down.png" onclick="click_down_key()" style="cursor: pointer; border: none; background:none; box-shadow:none; position:absolute; top:680px; left:1400px; width:80px;" height="60" width="60">
 		</div>			
 	</div>	
 	<div class="slides" id="credit_slide" hidden>
@@ -414,10 +420,10 @@ form {
 	   </p>
 	   </div>
 		<div class="fragment" data-fragment-index="9">
-			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none; position:absolute; top:630px; left:1400px; width:80px;" height="60" width="60">
+			<img src="images/arrow-up.png" onclick="click_up_key()" style="cursor: pointer; border: none; background:none; box-shadow:none; position:absolute; top:630px; left:1400px; width:80px;" height="60" width="60">
 		</div>					
 		<div class="fragment" data-fragment-index="9">
-			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:680px; left:1400px; width:80px;" height="60" width="60">
+			<img src="images/arrow-down.png" onclick="click_down_key()" style="cursor: pointer; border: none; background:none; box-shadow:none; position:absolute; top:680px; left:1400px; width:80px;" height="60" width="60">
 		</div>			   
 	</div>
 	
@@ -426,10 +432,10 @@ form {
 			<a href="https://github.com/sudhir-behani/visualization_using_d3">GITHUB SOURCE CODE</a>
 		</div>
 		<div class="fragment" data-fragment-index="9">
-			<img src="images/arrow-up.png" style="border: none; background:none; box-shadow:none; position:absolute; top:630px; left:1400px; width:80px;" height="60" width="60">
+			<img src="images/arrow-up.png" onclick="click_up_key()" style="cursor: pointer; border: none; background:none; box-shadow:none; position:absolute; top:630px; left:1400px; width:80px;" height="60" width="60">
 		</div>					
 		<div class="fragment" data-fragment-index="9">
-			<img src="images/arrow-down.png" style="border: none; background:none; box-shadow:none; position:absolute; top:680px; left:1400px; width:80px;" height="60" width="60">
+			<img src="images/arrow-down.png" onclick="click_down_key()" style="cursor: pointer; border: none; background:none; box-shadow:none; position:absolute; top:680px; left:1400px; width:80px;" height="60" width="60">
 		</div>				
 	</div>
 		
@@ -629,6 +635,38 @@ form {
 	}
 	//init();
 	
+	function click_left_key() {
+		console.log("Left key pressed: "+rl_page+ " page no " + page);	
+		if (rl_page === 1) {		
+			event.preventDefault();
+			rl_page = 0;
+			switch_page(page);
+			console.log("Arrow key pressed - pageup."+page);				
+		  }	
+	}
+	
+	function click_up_key () {
+		if (rl_page !== 1) {
+				event.preventDefault();
+				if (page > 1 ) {
+					page = page - 1;
+				}
+				switch_page(page);
+				console.log("Arrow key pressed - pageup."+page);
+			}	
+	}
+	
+	function click_down_key () {
+		if (rl_page !== 1) {		
+			event.preventDefault();
+			page = page + 1;
+			if (page == 9 ) {
+				page = 1;
+			}			
+			switch_page(page);
+			console.log("Arrow key pressed - pagedown."+page);
+		  }		
+	}	
 	// switch to page based on arraow key pressed
 	function switch_page(page) {
 		switch(page) {
@@ -732,7 +770,7 @@ form {
 	}
 
 	function pageleft() {
-		console.log("Left key pressed: "+rl_page);
+		console.log("Left key pressed: "+rl_page+ " page no " + page);
 		return function(event) {
 		if (rl_page === 1) {		
 			event.preventDefault();
