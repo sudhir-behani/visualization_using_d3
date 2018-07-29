@@ -264,7 +264,7 @@ form {
 	
 	<div class="slides" id="fifth_slide" hidden>
 	<h1 style="font-size:25px">
-	WinByRuns vs WinByWickets
+	Matches Played vs WinByRuns vs WinByWickets
 	</h1>
 	<h3 style="font-size:13px">
 	In this plot we compare all wining team's matches won, win by runs and win by wickets. Team name is a nominal variable as it contains names and plotted on X axis, 
@@ -1195,7 +1195,7 @@ form {
 					tooltip.style("opacity", 1)
 						   .style("left",(d3.event.pageX)+"px")
 						   .style("top",(d3.event.pageY)+"px")
-						   .html("Team Name:" + d.team + "               Matches Won:"+d.won);
+						   .html("Team Name:" + d.team + "               Matches Played:"+d.won);
 				})
 			   .on("mouseout", function() { tooltip.style("opacity", 0) });
 						
