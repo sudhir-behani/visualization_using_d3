@@ -954,34 +954,42 @@ form {
 						
 			bars = svg.selectAll(".bar").data(data).enter();	
 			bars.append("rect")
-			  .attr("class", "bar1")
-			  .attr("x", function(d) { return x(d.team); })
-			  .attr("width", x.rangeBand()/2)
-			  .attr("y", function(d) { return y0(d.won); })
-			  .attr("height", function(d,i,j) { return height - y0(d.won); })
-			  .attr("fill", color_mw)		
-			  .on("mouseover", function(d,i) {
+			    .attr("class", "bar1")
+			    .attr("x", function(d) { return x(d.team); })
+			    .attr("width", x.rangeBand()/2)
+			    .attr("y", function(d,i,j) { return height - y0(d.won); })
+			    .attr("height", 10)
+			    .attr("fill", color_mw)		
+			    .on("mouseover", function(d,i) {
 					tooltip.style("opacity", 1)
 						   .style("left",(d3.event.pageX)+"px")
 						   .style("top",(d3.event.pageY)+"px")
 						   .html("Team Name:" + d.team + "\n" +"Matches Won:"+d.won);
 				})
-			   .on("mouseout", function() { tooltip.style("opacity", 0) });
+			    .on("mouseout", function() { tooltip.style("opacity", 0) })
+			    .transition().duration(3000).delay(1000)
+  			    .attr("y", function(d) { return y0(d.won); })
+			    .attr("height", function(d,i,j) { return height - y0(d.won); });
+			   
 
 			bars.append("rect")
-			  .attr("class", "bar2")
-			  .attr("x", function(d) { return x(d.team) + x.rangeBand()/2; })
-			  .attr("width", x.rangeBand() / 2)
-			  .attr("y", function(d) { return y0(d.played); })
-			  .attr("height", function(d,i,j) { return height - y0(d.played); })
-			  .attr("fill", color_mp)
-			  .on("mouseover", function(d,i) {
+			    .attr("class", "bar2")
+			    .attr("x", function(d) { return x(d.team) + x.rangeBand()/2; })
+			    .attr("width", x.rangeBand() / 2)
+			    .attr("y", function(d,i,j) { return height - y0(d.played); } )
+			    .attr("height", 10 )
+			    .attr("fill", color_mp)
+			    .on("mouseover", function(d,i) {
 					tooltip.style("opacity", 1)
 						   .style("left",(d3.event.pageX)+"px")
 						   .style("top",(d3.event.pageY)+"px")
 						   .html("Team Name:" + d.team + "\n" +"Matches Played:"+d.played);
 				})
-				.on("mouseout", function() { tooltip.style("opacity", 0) });
+				.on("mouseout", function() { tooltip.style("opacity", 0) })
+				.transition().duration(3000).delay(1000)
+			    .attr("height", function(d,i,j) { return height - y0(d.played); })
+				.attr("y", function(d) { return y0(d.played); });
+				
 					
 			//function type(d) {
 			//  d.played = +d.played;
