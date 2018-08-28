@@ -251,6 +251,10 @@ form {
 	  <label><input type="radio" name="mode" id="radio_matches" value="matches_all" checked>All Teams</label>
 	  <label><input type="radio" name="mode" id ="radio_matches_top" value="matches_top">Top 5 Teams</label>
 	</form>
+	<div style="position: absolute; top: 220px; left: 500px;">
+	  <input type="checkbox" id="check_match_ano_all" value="match_check"/>
+	  <label for="option position:"> <span></span>Show All Annotations</label>
+	</div>		
 	<br>
 	<center>
 		<div class="fragment" data-fragment-index="9">
@@ -297,7 +301,7 @@ form {
 	  <label><input type="radio" name="mode" id="radio_winby" value="winby_all" checked hidden></label>
 	</form>
 	<div style="position: absolute; top: 255px; left: 300px;">
-	  <input type="checkbox" id="check_win_ano_all" value="winby_check" checked/>
+	  <input type="checkbox" id="check_win_ano_all" value="winby_check"/>
 	  <label for="option position:"> <span></span>Show All Annotations</label>
 	</div>	
 	<br>	
@@ -411,7 +415,6 @@ form {
 	   <p>
 		   <ul>
 			   <li>Kaggle competition for the providing dataset</li>
-			   <li>CS498 Staff for their support</li>
 			   <li>Github for providing hosting services</li>
 			   <li><a href="https://designmodo.com/3d-css3-button/">Designmodo</a> for providing stylish button</li>
 			   <li><a href="https://d3js.org/">d3js.org</a> for providing good examples</li>
@@ -482,6 +485,7 @@ form {
 
 	// count_timer_flag
 	var timer_flag = 0;
+		
 	function settimer() {
 		setTimeout(function(){ init();}, 1000);		
 	}
@@ -868,7 +872,7 @@ form {
 				.attr("stroke-width", 1.5);  
 		}
 	}
-	
+		
 	<!--Scene1 -->
 	function matches_played_won(){
 	
@@ -877,11 +881,20 @@ form {
 		d3.selectAll("input")
 			.on("change", changed);
 		
+		function match_check(){
+			console.log('match checkbox selected...');
+		}
+		
 		function changed() {
 		  console.log('matches radio changed');	
+		  var r_all = document.getElementById("radio_matches").checked;
+		  var r_top = document.getElementById("radio_matches_top").checked;		  
+		
 		  console.log(this.value);	
 		  if (this.value === "matches_all") matches_all();
-		  else matches_top();
+		  else if (this.value === "matches_top") matches_top();
+		  else if (this.value === "match_check" & r_all == true) matches_all();
+		  else if (this.value === "match_check" & r_top == true) matches_top();	
 		}		
 
 		var r_all = document.getElementById("radio_matches").checked;
@@ -957,7 +970,7 @@ form {
 			    .attr("class", "bar1")
 			    .attr("x", function(d) { return x(d.team); })
 			    .attr("width", x.rangeBand()/2)
-			    .attr("y", function(d,i,j) { return height - y0(d.won); })
+			    .attr("y", function(d,i,j) { return y0(d.won); })
 			    .attr("height", 10)
 			    .attr("fill", color_mw)		
 			    .on("mouseover", function(d,i) {
@@ -971,12 +984,11 @@ form {
   			    .attr("y", function(d) { return y0(d.won); })
 			    .attr("height", function(d,i,j) { return height - y0(d.won); });
 			   
-
 			bars.append("rect")
 			    .attr("class", "bar2")
 			    .attr("x", function(d) { return x(d.team) + x.rangeBand()/2; })
 			    .attr("width", x.rangeBand() / 2)
-			    .attr("y", function(d,i,j) { return height - y0(d.played); } )
+			    .attr("y", function(d,i,j) { return y0(d.played); } )
 			    .attr("height", 10 )
 			    .attr("fill", color_mp)
 			    .on("mouseover", function(d,i) {
@@ -1037,10 +1049,11 @@ form {
 				.style("fill-opacity", 0.001);		
 
 			var r_all = document.getElementById("radio_matches").checked;
-			var r_top = document.getElementById("radio_matches_top").checked;
-				
-			// annotatation			
-			if (r_all == true) { 
+			var r_top = document.getElementById("radio_matches_top").checked;			
+			var checkbox_state = document.getElementById("check_match_ano_all");
+			
+			// annotatation
+			if (r_all == true & checkbox_state.checked == true) { 
 				text_data = {'text':"High Experience Teams", 'x': 570, 'y': 40, 'color': 'black'};			
 				anotate_box = { 'x' : 20, 'y': 0 , 'w': 440, 'h': 120 };
 				st_line = { 'x1': 440, 'y1': 40, 'x2': 490, 'y2': 40 };
@@ -1059,7 +1072,8 @@ form {
 				vert_line = { 'x1': 620, 'y1': 290, 'x2': 620, 'y2': 270};
 				chart_annotation(svg, anotate_box, text_data, st_line, 1, vert_line);	
 			}
-			else { 
+			else if (r_all == false & checkbox_state.checked == true) { 
+			
 				text_data = {'text':"CSK : Top ranked team with relatively lesser experience", 'x': 570, 'y': 0, 'color': 'black'};			
 				anotate_box = { 'x' : 230, 'y': 0 , 'w': 100, 'h': 100 };
 				st_line = { 'x1': 320, 'y1': 0, 'x2': 370, 'y2': 0 };
@@ -1094,10 +1108,10 @@ form {
 					.attr("fill",text_data['color'])
 					.text(function(d) { return d; });				
 					
-			}	
-		}			
+			}
+		}
 	}
-
+	
 	<!--Scene2 -->
 	function win_by() {
 	
@@ -1197,7 +1211,7 @@ form {
 			  .attr("x", function(d) { return x(d.team); })
 			  .attr("width", x.rangeBand()/3)
 			  .attr("y", function(d) { return y0(d.won); })
-			  .attr("height", function(d,i,j) { return height - y0(d.won); })
+			  .attr("height", 10 )
 			  .attr("fill", color_mp)
 			  .on("mouseover", function(d,i) {
 					tooltip.style("opacity", 1)
@@ -1205,29 +1219,37 @@ form {
 						   .style("top",(d3.event.pageY)+"px")
 						   .html("Team Name:" + d.team + "               Matches Played:"+d.won);
 				})
-			   .on("mouseout", function() { tooltip.style("opacity", 0) });
+			   .on("mouseout", function() { tooltip.style("opacity", 0) })
+   			   .transition().duration(3000).delay(1000)
+			   .attr("height", function(d,i,j) { return height - y0(d.won); })
+			   .attr("y", function(d) { return y0(d.won); });
+			   
 						
 			bars.append("rect")
 			  .attr("class", "bar2")
 			  .attr("x", function(d) { return x(d.team)+ x.rangeBand()/3; })
 			  .attr("width", x.rangeBand()/3)
-			  .attr("y", function(d) { return y0(d.win_by_wickets); })
-			  .attr("height", function(d,i,j) { return height - y0(d.win_by_wickets); })
+			  .attr("y", function(d) { return y0(d.win_by_runs); })
+			  .attr("height", 10 )
 			  .attr("fill", color_wbr)
 			  .on("mouseover", function(d,i) {
 					tooltip.style("opacity", 1)
 						   .style("left",(d3.event.pageX)+"px")
 						   .style("top",(d3.event.pageY)+"px")
-						   .html("Team Name:" + d.team + "    " +"Matches Win by wickets:"+d.win_by_wickets);
+						   .html("Team Name:" + d.team + "    " +"Matches Win by runs:"+d.win_by_runs);
 				})
-			   .on("mouseout", function() { tooltip.style("opacity", 0) });
+			   .on("mouseout", function() { tooltip.style("opacity", 0) })
+   			   .transition().duration(3000).delay(1000)
+			   .attr("height", function(d,i,j) { return height - y0(d.win_by_runs); })
+			   .attr("y", function(d) { return y0(d.win_by_runs); });
 
+			   
 			bars.append("rect")
 			  .attr("class", "bar3")
 			  .attr("x", function(d) { return x(d.team) + x.rangeBand()/3 + x.rangeBand()/3; })
 			  .attr("width", x.rangeBand() / 3)
-			  .attr("y", function(d) { return y0(d.win_by_runs); })
-			  .attr("height", function(d,i,j) { return height - y0(d.win_by_runs); })
+			  .attr("y", function(d) { return y0(d.win_by_wickets); })
+			  .attr("height", 10 )
 			  .attr("fill", color_wbw)
 			  .on("mouseover", function(d,i) {
 					tooltip.style("opacity", 1)
@@ -1235,7 +1257,11 @@ form {
 						   .style("top",(d3.event.pageY)+"px")
 						   .html("Team Name:" + d.team + "     " +"Matches Win by wickets:"+d.win_by_runs);
 				})
-				.on("mouseout", function() { tooltip.style("opacity", 0) });
+				.on("mouseout", function() { tooltip.style("opacity", 0) })
+   			   .transition().duration(3000).delay(1000)
+			   .attr("height", function(d,i,j) { return height - y0(d.win_by_wickets); })
+			   .attr("y", function(d) { return y0(d.win_by_wickets); });
+				
 												
 			//function type(d) {
 			//  d.won = +d.won;
@@ -1247,7 +1273,7 @@ form {
 				.range([color_mp, color_wbr, color_wbw]);		
 			
 			var legend = svg.selectAll(".legend")
-			.data(["Matches Played", "Win By Wickets", "Win By Runs"])
+			.data(["Matches Played", "Win By Runs", "Win By Wickets"])
 			.enter().append("g")
 			.attr("class", "legend")
 			.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });		
